@@ -1,4 +1,3 @@
-// var entries = require('./config/pages.config.js');
 var path = require('path');
 var glob = require('glob');
 
@@ -7,13 +6,13 @@ var entries = getEntry();
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  // entry:  __dirname + "/dev/entry.js",//唯一入口文件
+  // entry:  __dirname + "/dev/entry.js",//单一入口文件，也可以以传入对象或者数组的方式配置成多入口文件
   entry: entries,
   output: {
-    // path: __dirname + "/dev",//打包后的文件存放的地方
+    //打包后的文件存放的根目录
     path: path.join(__dirname, 'build'),
     // filename: "entry.built.js"//打包后输出文件的文件名
-    filename: '[name].built.[chunkhash].js'
+    filename: '[chunkhash].js'
   },
 
   module: {
@@ -47,13 +46,13 @@ module.exports = {
   plugins: [
   ].concat(configHtmlPlugins()),
 
-  // webpack 内置的本地开发服务器
+  // webpack默认的本地开发服务器，但是仍然需要手动下载webpack-dev-server模块
   devServer: {
-    contentBase: './dev', //服务器指向的本地目录
-    colors: true, //彩色显示终端输出的结果
+    contentBase: path.join(__dirname, 'build'), //服务器指向的本地目录
+    // colors: true, //彩色显示终端输出的结果
     historyApiFallback: true, //在开发单页应用时非常有用，它依赖于HTML5 history API，如果设置为true，所有的跳转将指向index.html
-    inline: true  //源码改变实时刷新
-
+    inline: true,  //源码改变实时刷新,
+    port: 6789, //服务器所用的端口
   }
 };
 
@@ -87,7 +86,7 @@ function configHtmlPlugins() {
 
 // 将所有入口文件自动整理成 [路径名：文件路径] 键值对
 function getEntry() {
-  var files = glob.sync(path.join(__dirname, 'dev/pages/**/*.entry.js'));
+  var files = glob.sync(path.join(__dirname, 'dev/pages/**/entry.js'));
   var entries = {},
     entry, dirname, basename, pathname, extname;
 
