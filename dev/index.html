@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Webpack demo</title>
+</head>
+<body>
+
+  <div id="page-root">
+    <button @click="startGame">Start Game</button>
+    <h1>You have <counter ref="counter" @time-up="gameOver"></counter> seconds to play!</h1>
+    <div class="game-area">
+      <circles ref="circles"></circles>
+    </div>
+    <h2 class="scores">Great, you've won {{score}} points in the game!</h2>
+  </div>
+
+  <script src="entry.built.js"></script>
+</body>
+</html>

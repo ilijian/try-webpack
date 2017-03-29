@@ -1,0 +1,42 @@
+{
+  "products": {
+    "name": "OnePlus Product A",
+    "productSets": 
+      [
+        {
+          "required": true,
+          "setName": "Choose Set One",
+          "set":
+            [
+              {
+                "sku": "set-one-a",
+                "name": "Set One product A",
+                "price": 50
+              },
+              {
+                "sku": "set-one-b",
+                "name": "Set One product B",
+                "price": 40
+              }
+            ]
+        },
+        {
+          "required": false,
+          "setName": "Choose Set Two",
+          "set":
+            [
+              {
+                "sku": "set-two-a",
+                "name": "Set Two product A",
+                "price": 50
+              },
+              {
+                "sku": "set-two-b",
+                "name": "Set Two product B",
+                "price": 40
+              }
+            ]
+        }
+      ]
+  }
+}
