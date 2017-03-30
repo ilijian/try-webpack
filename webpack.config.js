@@ -1,5 +1,6 @@
 var path = require('path');
 var glob = require('glob');
+var HbsToHtmlPlugin = require('./plugins/HbsToHtml.js');
 
 var entries = getEntry();
 
@@ -12,7 +13,7 @@ module.exports = {
     //打包后的文件存放的根目录
     path: path.join(__dirname, 'build'),
     // filename: "entry.built.js"//打包后输出文件的文件名
-    filename: '[chunkhash].js'
+    filename: '[name].[chunkhash].js'
   },
 
   module: {
@@ -31,6 +32,12 @@ module.exports = {
         }
       },
       {
+        test: /\.hbs$/,
+        use: {
+          loader: 'handlebars-loader'
+        }
+      },
+      {
         test: /\.json$/,  //用于匹配loaders所处理文件拓展名的正则表达式
         use: 'json-loader', //具体loader的名称
         exclude: /node_modules/
@@ -44,12 +51,13 @@ module.exports = {
   },
 
   plugins: [
+    // 定制化Plugin，用于将定制化的hbs文件渲染成合法的html
+    new HbsToHtmlPlugin()
   ].concat(configHtmlPlugins()),
 
   // webpack默认的本地开发服务器，但是仍然需要手动下载webpack-dev-server模块
   devServer: {
     contentBase: path.join(__dirname, 'build'), //服务器指向的本地目录
-    // colors: true, //彩色显示终端输出的结果
     historyApiFallback: true, //在开发单页应用时非常有用，它依赖于HTML5 history API，如果设置为true，所有的跳转将指向index.html
     inline: true,  //源码改变实时刷新,
     port: 6789, //服务器所用的端口
@@ -58,14 +66,15 @@ module.exports = {
 
 function configHtmlPlugins() {
 
-  var htmls = glob.sync(path.join(__dirname, 'dev/pages/**/index.html'));
+  var hbses = glob.sync(path.join(__dirname, 'dev/pages/**/index.hbs'));
 
   var plugins = [];
 
   for(var entry in entries) {
     var html = path.join(path.dirname(entries[entry]), 'index.html');
-    // 如果入口文件的文件夹下不存在index.html，那么使用指定的默认模板
-    html = htmls.indexOf(html) === -1 ? path.join(__dirname, 'dev/templates/default.html') : html;
+    var hbs = path.join(path.dirname(entries[entry]), 'index.hbs');
+    // 如果入口文件的文件夹下不存在index.hbs，那么使用指定的默认模板
+    hbs = hbses.indexOf(hbs) === -1 ? path.join(__dirname, 'dev/templates/page.hbs') : hbs;
     //注意:同一个插件可以 new 多次, 每次可以进行不同的配置
     plugins.push(new HtmlWebpackPlugin({
       // filename: 输出html的文件名，如果包含路径信息，那么将会输出到指定路径下（相对路径，相对于output.path），没有文件夹则会创建文件夹
@@ -75,7 +84,7 @@ function configHtmlPlugins() {
       // 是否加上在引用处加上webpack此次打包产生的hash，格式为（src="built.js?[hash]"）
       hash: true,
       // template: 指定用于输出html文件的模板html或者种子html
-      template: html,
+      template: hbs,
       // chunks: 指定将会插入哪些打包后的文件
       chunks: [entry]
     }));

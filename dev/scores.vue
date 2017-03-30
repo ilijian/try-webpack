@@ -1,5 +1,0 @@
-<script>
-  module.exports = {
-
-  };
-</script>

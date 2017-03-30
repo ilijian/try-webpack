@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="${{lang}}">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <!-- 禁用移动端缩放 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, height=device-height">
+  <title>${{#title}}${{{title}}}${{/title}}${{^title}}Never Settle - OnePlus - OnePlus${{/title}}</title>
+  <meta name="description" content="${{#description}}${{{description}}}${{/description}}${{^description}}OnePlus creates beautifully designed products with premium build quality &amp; brings the best technology to users around the world. No tradeoffs, we #NeverSettle.${{/description}}">
+  <meta name="keywords" content="${{#keywords}}${{{keywords}}}${{/keywords}}${{^keywords}}${{{.}}}${{/keywords}}">
+
+  <!-- 社交媒体分享需用的OG信息 -->
+  <meta property="fb:app_id" content="1693901367526118" />
+  <meta property="og:title" content="${{#title}}${{{title}}}${{/title}}${{^title}}Never Settle - OnePlus - OnePlus${{/title}}" />
+  ${{#og}}
+  <meta property="og:image" content="${{#image}}${{{image}}}${{/image}}${{^image}}https://opstatics.com/mage/images/open_graph/oneplus-logo.png${{/image}}" />
+  <meta property="og:image:width" content="${{#width}}${{{width}}}${{/width}}${{^width}}1200${{/width}}" />
+  <meta property="og:image:height" content="${{#height}}${{{height}}}${{/height}}${{^height}}630${{/height}}" />
+  ${{/og}}
+  <meta property="og:description" content="${{#description}}${{{description}}}${{/description}}${{^description}}OnePlus creates beautifully designed products with premium build quality &amp; brings the best technology to users around the world. No tradeoffs, we #NeverSettle.${{/description}}" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@${{{twitter_site}}}" />
+  <meta name="twitter:creator" content="@${{{twitter_creator}}}" />
+  <meta name="twitter:title" content="${{#title}}${{{title}}}${{/title}}${{^title}}Never Settle - OnePlus - OnePlus${{/title}}" />
+  <meta name="twitter:description" content="${{#description}}${{{description}}}${{/description}}${{^description}}OnePlus creates beautifully designed products with premium build quality &amp; brings the best technology to users around the world. No tradeoffs, we #NeverSettle.${{/description}}" />
+  ${{#og}}
+  <meta name="twitter:image" content="${{#image}}${{{image}}}${{/image}}${{^image}}https://opstatics.com/mage/images/open_graph/oneplus-logo.png${{/image}}" />
+  ${{/og}}
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="https:opstatics.com/assets/images/favicon.png">
+
+  ${{#alternatives}}
+  <!-- 指向其他商城的索引 -->
+  <link href="${{{url}}}" rel="alternate" hreflang="${{lang}}">
+  ${{/alternatives}}
+
+  <!-- 共用样式 -->
+  <link rel="stylesheet" href="/assets/styles/base.scss">
+  ${{#stylesheets}}
+  <!-- 本页面样式 -->
+  <link rel="stylesheet" href="${{.}}">
+  ${{/stylesheets}}
+  <!-- 谷歌字体CDN引用 -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i&amp;subset=latin-ext" rel="stylesheet">
+</head>
+<body>
+  ${{> content}}
+  
+  ${{#scripts}}
+  <script src="${{{.}}}"></script>
+  ${{/scripts}}
+</body>
+</html>

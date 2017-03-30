@@ -1,0 +1,76 @@
+---
+layout: page.hbs
+page:
+  domain: "https://oneplus.net"
+  url: checkout/jcart
+
+title: Store - Place Order
+description: __to__be__filled__
+
+# OG信息，将会用于分享到facebook、twitter以及其他社交媒体网站
+og:
+  image: https://opstatics.com/mage/images/open_graph/oneplus-logo.png
+  width: 1200
+  site: OnePlus
+---
+
+  <div id="page-root">
+    <step-bar :step="1"></step-bar>
+    <h2>Shipping Address</h2>
+    <div>
+      <choose-address 
+        type="shipping" 
+        current-country-code="us"
+        ref="shippingAddress" 
+        @address-list-change="onAddressListChange"
+        fetch="xman/useraddress/list" 
+        put="/xman/useraddress/add" 
+        update="/xman/useraddress/update" 
+        get-pincode="/xman/useraddress/getpincode"
+        :switch-country="false"
+        :has-submit="false" 
+        :submit-callback="delivery.submitCallback"></choose-address>
+    </div>
+
+    <h2>Billing Address</h2>
+
+    <div>
+      <choose-address 
+
+        
+        current-country-code="us" 
+        :switch-country="false"
+        type="billing" 
+        ref="billingAddress" 
+        put="/xman/useraddress/add" 
+        :has-submit="false"></choose-address>
+    </div>
+  </div>
+
+  <!-- 页面所需使用的翻译代码 -->
+  <!-- 使用方法：见vue-i18n -->
+  <script id="_page_translate" type="application/json">
+    {
+      "text": 
+        {
+          "oneplus_2": "一加二",
+          "oneplus_3": "一加三",
+          "store": "商城"
+        }
+    }
+  </script>
+
+  <!-- 页面所需使用的配置文件，通常为与页面状态无关的常量，默认配置存在于根目录下的site.config.json5文件中，在此重写会覆盖文件中原有的常量 -->
+  <!-- 在.vue.js或.vue 文件中使用this.$config.var_name取用常量名 -->
+  <script id="_page_config" type="application/json">
+    {
+      "links":
+        {
+          "home": "https://oneplus.net/hk"
+        },
+      "apis":
+        {
+          "orders": "/xman/user/orders"
+        }
+    }
+  </script>
