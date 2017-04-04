@@ -1,0 +1,67 @@
+@charset "utf-8";
+
+// 响应式文字
+// 指定文字在某宽度下的字号，据此生成响应式字号，
+// 并且可以设定文字的最大值，当文字达到指定最大值字号后，不再随宽度增大而增大
+// 并且可以设定文字的最小值，当文字达到指定最小值字号后，不再随宽度减小而减小
+@mixin make-responsive-text(
+  $font-size, 
+  $viewport-width: 1920px, 
+  $max-font-size: false, 
+  $min-font-size: 12px, //这是chrome所限制的最小字号
+  $padding: false) {
+  
+  // 将指定宽度下的字体大小换算成响应式单位vw的字体大小
+  font-size: ($font-size * 100 / $viewport-width) * 1vw;
+  // 如果指定了padding属性，那么也会换算成为响应式单位vw大小
+  @if $padding {
+    padding: percentage($padding / $viewport-width);
+    // padding: ($padding * 100 / $viewport-width) * 1vw;  
+    padding: $padding / $font-size * 1em;
+  }
+  // 如果指定了最大字体限制，那么最据此计算出当达到最大字体时的屏幕宽度，记为max，当超过max时，字体大小为指定最大字号，不再随宽度增大而变化
+  // 如果未指定，则字体会一直变大
+  @if $max-font-size {
+
+    $radio: $max-font-size / $font-size;
+
+    @include viewport-wider-than($viewport-width * $ratio) {
+      font-size: $max-font-size;
+      @if $padding {
+        padding: $padding * $ratio;
+      }
+    }
+  }
+  // 如果指定了最小字体限制，那么最据此计算出当达到最小字体时的屏幕宽度，记为min，当屏幕宽度小于min时，字体大小为指定最小字号，不再随宽度减小而变化
+  $radio: $min-font-size / $font-size;
+
+  @include viewport-narrower-than($viewport-width * $ratio) {
+    font-size: $min-font-size;
+    @if $padding {
+      padding: $padding * $ratio;
+    }
+  }
+
+}
+
+// 创建响应式高度的空元素，相对于父级宽度变化
+@mixin make-responsive-block($height, $parent-width: 1200px, $max-height: false, $min-height: false) {
+  display: block;
+
+  &:before {
+    content: '';
+    display: block;
+    height: 0;
+    width: 100%;
+    padding-bottom: percentage($height / $parent-width);
+  }
+
+  @if $max-height {
+    max-width: $max-height * $parent-width / $height;
+  }
+
+  @if $min-height {
+    min-width: $min-height * $parent-width / $height;
+  }
+  
+}

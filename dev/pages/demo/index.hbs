@@ -15,36 +15,8 @@ og:
 ---
 
   <div id="page-root">
-    <step-bar :step="1"></step-bar>
-    <h2>Shipping Address</h2>
-    <div>
-      <choose-address 
-        type="shipping" 
-        current-country-code="us"
-        ref="shippingAddress" 
-        @address-list-change="onAddressListChange"
-        fetch="xman/useraddress/list" 
-        put="/xman/useraddress/add" 
-        update="/xman/useraddress/update" 
-        get-pincode="/xman/useraddress/getpincode"
-        :switch-country="false"
-        :has-submit="false" 
-        :submit-callback="delivery.submitCallback"></choose-address>
-    </div>
-
-    <h2>Billing Address</h2>
-
-    <div>
-      <choose-address 
-
-        
-        current-country-code="us" 
-        :switch-country="false"
-        type="billing" 
-        ref="billingAddress" 
-        put="/xman/useraddress/add" 
-        :has-submit="false"></choose-address>
-    </div>
+    <a is="one-button" href="" class="one-button btn-red btn-lg" retry="hello">Button Demo What</a>
+    {{msg}}
   </div>
 
   <!-- 页面所需使用的翻译代码 -->

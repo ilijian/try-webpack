@@ -1,0 +1,190 @@
+@charset "utf-8";
+
+%box-shadow-base {
+  box-shadow: 4px 4px 10px #cdcdcd;
+}
+
+// 消除浮动带来的影响
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin inline-block {
+  display: inline-block;
+  zoom: 1;
+  vertical-align: middle;
+}
+
+// link的普通样式
+@mixin clean-link {
+  color: inherit;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+// 将颜色按照百分比变浅
+@function tint($color, $percentage) {
+  @return mix($color, white, $percentage);
+}
+
+// 将颜色按照百分比加深
+@function shade($color, $percentage) {
+  @return mix($color, black, $percentage);
+}
+
+// 关闭符号✖️
+@mixin make-close($color: $text-white, $size: 16px) {
+  &:after, &:before {
+    content: '';
+    display: block;
+    @include transform(rotate(45deg));
+
+    &:hover {
+      border-color: darken($color, 20%);
+    }
+  }
+
+  &:before {
+    border-top: 1px solid $color;
+    border-bottom: 1px solid $color;
+    height: 0;
+    width: $size;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -1px;
+    margin-left: 0 - 0.5 * $size;
+  }
+
+  &:after {
+    border-left: 1px solid $color;
+    border-right: 1px solid $color;
+    height: $size;
+    width: 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -1px;
+    margin-top: 0 - 0.5 * $size;
+  }
+}
+
+// 技巧：对radio和checkbox应用样式，使其肉眼不可见，但对紧随其后的label可以使用样式做任意修改，以达到个性化checkbox和radio的目的，并且
+// 利用浏览器支持的input:radio,input:checkbox默认行为，可以对选中和非选中两种状态进行个性化
+@mixin make-puppet {
+  input[type=radio],input[type=checkbox] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    clip: rect(1px,1px,1px,1px);
+    overflow: hidden;
+
+    &:checked + .puppet {
+      @content;
+    }
+  }
+
+  .puppet {
+    cursor: pointer;
+    margin: 0;
+  }
+}
+
+// Caret arrow
+// arrow(direction 1,direction 2,size,color)
+// arrow('right','right','10px','red')
+// arrow('top','right','10px','red')
+// arrow('top','left','10px','red')
+// arrow('bottom','right','10px','red')
+// arrow('bottom','left','10px','red')
+// last edited  by Jian.Li, contributed by Zena.Zhang,Fei.Wang
+
+@mixin make-caret($d1,$d2:false,$size:10px,$color:$text-red){
+  @if($d1 == $d2){$d2:false;}
+  $dirs:top,right,bottom,left;
+  width:0;height:0;line-height:0;
+  display:inline-block;
+  border-width:$size;
+  border-style:solid;
+  border-color:transparent;
+  @if $d2 {
+    border-#{$d1}-width:$size;
+    border-#{$d1}-color:$color;
+    border-#{$d1}-style:solid;
+
+    border-#{$d2}-color:$color;
+    border-#{$d2}-style:solid;
+    border-#{$d2}-width:$size;
+  }@else {
+    @if index($dirs,$d1)>2 {
+    $d1:nth($dirs,index($dirs,$d1)-2);
+  }@else{
+    $d1:nth($dirs,index($dirs,$d1)+2);
+  }
+    border-#{$d1}-width:$size;
+    border-#{$d1}-color:$color;
+    border-#{$d1}-style:solid;
+  }
+}
+
+@mixin make-puppet-card($card-padding-top:20px, $card-padding-left: 30px,$card-margin:20px, $max-width: 360px){
+  @include make-puppet {
+    @extend %box-shadow-base;
+    opacity: 1;
+    @content;
+  }
+  .puppet {
+    display: block;
+    max-width: $max-width;
+    position: relative;
+    // @include inline-block;
+    user-select: none;
+    padding: $card-padding-top $card-padding-left;
+    margin-right: $card-margin;
+    margin-bottom: $card-margin;
+    background: $text-white;
+    color: $text-black;
+    font-weight: $text-strong;
+    opacity: 0.5;
+    transition: $overall-transition-duration;
+
+    &:hover, &.selected{
+      @extend %box-shadow-base;
+    }
+
+    .separator {
+      display: block;
+      border-top: 1px solid $separator-color;
+      margin-left: 0 - $card-padding-left;
+      margin-right: 0 - $card-padding-left;
+    }
+
+    &.is-default:before {
+      content: "";
+      @include make-caret('top','right',5px);
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+
+}

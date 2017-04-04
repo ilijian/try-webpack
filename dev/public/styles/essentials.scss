@@ -1,0 +1,8 @@
+@charset "utf-8";
+// The file essentials.built.css compiled from this .scss file should be an empty file, thus can be imported by .vue sass as utilities.
+// 由本文件编译后的essentials.built.css 应当为空文件，这样才可以作为便利样式文件引入到.vue文件的sass中
+// By Jian.Li
+
+@import "bs.mixin";
+@import "variables";
+@import "./mixins/mixins";

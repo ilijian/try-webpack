@@ -1,0 +1,83 @@
+@charset "utf-8";
+
+@mixin ifretina {
+  @media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3 / 2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5) {
+    @content;
+  }
+}
+
+//set resoponsive styles in this way makes responsive codes independent of each other, so you have to write for every viewport
+// max-width: 735px
+@mixin viewport-xs {
+  @media screen and (max-width: $screen-xs-max) {
+    @content;
+  }
+}
+// 736px - 1055px
+@mixin viewport-sm {
+  @media screen and (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+    @content;
+  }
+}
+// 1056px - 1391px
+@mixin viewport-md {
+  @media screen and (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+    @content;
+  }
+}
+
+// 1392px - ...
+@mixin viewport-lg {
+  @media screen and (min-width: $screen-lg-min){
+    @content;
+  }
+}
+
+@mixin viewport-non-xs {
+  @media screen and (min-width: $screen-sm-min){
+    @content;
+  }
+}
+
+// max-width: 1199px
+@mixin viewport-xs-sm {
+  @media screen and (max-width: $screen-sm-max) {
+    @content;
+  }
+}
+
+@mixin viewport-xs-sm-md {
+  @media screen and (max-width: $screen-md-max) {
+    @content;
+  }
+}
+
+@mixin viewport-portrait {
+  @media all and (orientation: portrait){
+    @content;
+  }
+}
+
+@mixin viewport-landscape {
+  @media all and (orientation: landscape){
+    @content;
+  }
+}
+
+@mixin viewport-wider-than ($width){
+  @media screen and (min-width: $width) {
+    @content;
+  }
+}
+
+@mixin viewport-narrower-than ($width){
+  @media screen and (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin viewport-between ($min-width, $max-width){
+  @media screen and (min-width: $min-width) and (max-width: $max-width) {
+    @content;
+  }
+}

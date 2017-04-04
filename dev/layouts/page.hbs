@@ -9,6 +9,9 @@
   <meta name="description" content="${{#description}}${{{description}}}${{/description}}${{^description}}OnePlus creates beautifully designed products with premium build quality &amp; brings the best technology to users around the world. No tradeoffs, we #NeverSettle.${{/description}}">
   <meta name="keywords" content="${{#keywords}}${{{keywords}}}${{/keywords}}${{^keywords}}${{{.}}}${{/keywords}}">
 
+  ${{#metas}}
+  <meta name="${{{name}}}" content="${{{content}}}">  
+  ${{/metas}}
   <!-- 社交媒体分享需用的OG信息 -->
   <meta property="fb:app_id" content="1693901367526118" />
   <meta property="og:title" content="${{#title}}${{{title}}}${{/title}}${{^title}}Never Settle - OnePlus - OnePlus${{/title}}" />
@@ -35,13 +38,13 @@
   ${{/alternatives}}
 
   <!-- 共用样式 -->
-  <link rel="stylesheet" href="/assets/styles/base.scss">
+  <!-- <link rel="stylesheet" href="/assets/styles/base.scss"> -->
   ${{#stylesheets}}
   <!-- 本页面样式 -->
   <link rel="stylesheet" href="${{.}}">
   ${{/stylesheets}}
   <!-- 谷歌字体CDN引用 -->
-  <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i&amp;subset=latin-ext" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i&amp;subset=latin-ext" rel="stylesheet"> -->
 </head>
 <body>
   ${{> content}}

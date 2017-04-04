@@ -1,0 +1,405 @@
+@charset "utf-8";
+// This file defines style fragments for global use
+// By default each style fragments consists of two parts - the rendering part and the layout part.
+// The rendering part refers to those styles who won't change when screen size changes. e.g. text color, background color, etc.
+// The layout part, otherwise, will change in corresponding to the screen size. It's responsible for responsive change. It changes at certain breakpoints which can be configured in _0-variable.scss.
+// Each style fragment may have one or both parts.
+// Two parts of a certain style fragment are recommended to stay close.
+
+body,html {
+  font-family: Lato,"Lato Latin","Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: $font-weight-base;
+  &>.container {
+    min-width: $container-width-min;
+  }
+  color: #666;
+  letter-spacing: 0.02em;
+  position: relative;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+p,h1,h2,h3,h4,h5,h6,dl,dt,dd {margin: 0;}
+
+/*text or background color*/
+.text-white {color: $text-white;}
+.text-black {color: $text-black;}
+.text-red {color: $text-red;}
+.text-gray {color: $text-gray;}
+.text-blue{color: $text-blue;}
+
+.bg-white {background-color: $text-white;}
+.bg-black {background-color: $text-black;}
+.bg-red {background-color: $text-red;}
+.bg-gray {background-color: $text-bg-gray;}
+
+//text weight
+.text-normal {font-weight: $text-normal;}
+.text-strong {font-weight: $text-strong;}
+.text-stronger {font-weight: $text-stronger;}
+
+//text-size
+.text-small {font-size: $text-small;}
+.text-base {font-size: $text-base;}
+.text-big {font-size: $text-big;}
+.text-bigger {font-size: $text-bigger;}
+
+//text transform - uppercase, lowercase, capitalize,
+.text-uppercase, .uppercase {text-transform: uppercase;}
+.text-lowercase, .lowercase {text-transform: lowercase;}
+.text-capitalize, .capitalize {text-transform: capitalize;}
+
+a, .link {
+  @include clean-link;
+  
+  &, &:visited {
+    color: $text-blue;
+  }
+
+  &:hover, &:focus {
+    color: $text-red;
+  }
+
+  &.text-black {
+    &, &:visited {
+      color: $text-black;
+    }
+  }
+}
+
+// START: 限流弹出提示气泡
+// @author: Jian.Li
+.access-denied, .pop-msg {
+  position: relative;
+  z-index: 88;
+
+  &[disabled] {
+    pointer-events: none;
+  }
+
+  .warning {
+    &:after {
+      content: attr(data-warning);
+      display: block;
+      position: absolute;
+      padding: 10px;
+      white-space: normal;
+      line-height: 1.4;
+      min-width: 300px;
+      max-width: 600px;
+      left: 50%;
+      background-color: $text-white;
+      top: -5px;
+      color: $text-gray;
+      transform: translate(-50%, -100%);
+      width: 100%;
+      text-align: left;
+      box-shadow: 0px 0px 5px #cdcdcd;
+    }
+
+    &:before {
+      content: '';
+      display: block;
+      width: 12px;
+      height: 12px;
+      background-color: $text-white;
+      transform: rotate(45deg);
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      margin-left: -7px;
+      z-index: 21;
+    }
+
+  }
+
+}
+
+.access-denied {
+  &:before {
+    content: '';
+    position: absolute;
+    display: block;
+    height: 0;
+    border-top: 2px solid $text-red;
+    left: 0;
+    bottom: 0;
+    animation-name: bar-retry;
+    animation-duration: 5s;
+    // animation-fill-mode: infinite;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+  }
+
+  animation-name: bg-retry;
+  animation-duration: 5s;
+  // animation-fill-mode: infinite;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+
+  @at-root {
+    @keyframes bar-retry {
+      from {
+        width: 0;
+      }
+      to {
+        width: 100%;
+      }
+    }
+
+    @keyframes bg-retry {
+      from {
+        background-color: #c7c9cc;
+      }
+      60% {
+        background-color: $text-gray;
+      }
+      to {
+        background-color: $text-red;
+      }
+    }
+  }
+}
+
+// END: 限流弹出提示气泡
+
+.no-pointer {
+  pointer-events: none;
+}
+
+.ov-visible {
+  overflow: visible !important;
+}
+
+.ov-hidden {
+  overflow: hidden;
+}
+
+// START: 高度系统
+.full-width {
+  width: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.viewport-height {
+  height: 100vh;
+}
+
+.viewport-width {
+  width: 100vw;
+}
+
+// END: 高度系统
+
+.side-padding {
+  padding-left: $content-side-padding !important;
+  padding-right: $content-side-padding !important;
+}
+
+.text-indent {
+  padding-left: $content-text-indent;
+}
+
+.side-padding-topic {
+  padding: 0 $content-side-padding;
+  @include viewport-xs {
+    padding: 0;
+  }
+}
+
+
+// START: 容器系统
+
+// 无限宽度的容器
+
+%container-base {
+  @include clearfix;
+  display: block;
+  margin: auto;
+  width: 100%;
+}
+.container-infinite {
+  @extend %container-base;
+}
+
+// 最大宽度为1920px的容器
+.container-topic {
+  @extend %container-base;
+  max-width: $container-topic-max;
+  min-width: $container-topic-min;
+  @include viewport-narrower-than($container-topic-max) {
+    // padding-left:
+  }
+}
+
+// 最大宽度为1200px的容器
+.container-text {
+  @extend %container-base;
+  max-width: $container-text-max;
+  min-width: $container-text-min;
+  @include viewport-narrower-than($container-topic-max) {
+    // padding-left:
+  }
+}
+
+// END: 容器系统
+
+//START: The margin system
+
+%margin-base {
+  display: block;
+  @include clearfix;
+}
+
+.margin-ultra {
+  @extend %margin-base;
+
+}
+
+.margin-epic {
+  @extend %margin-base;
+
+}
+
+.margin-huge {
+  @extend %margin-base;
+
+}
+
+.margin-large {
+  @extend %margin-base;
+
+}
+
+.margin-medium {
+  @extend %margin-base;
+
+}
+
+.margin-small {
+  @extend %margin-base;
+
+}
+
+.margin-tiny {
+  @extend %margin-base;
+
+}
+
+@mixin make-margin($margin-height-max, $margin-height-min) {
+  display: block;
+  @include clearfix;
+
+}
+//END: The margin system
+
+
+.disabled, [disabled] {
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+.no-margin{margin: 0;}
+
+.default-box-shadow {
+  box-shadow: 4px 4px 10px #cdcdcd;
+}
+
+.inline-block{
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.line-height-base{
+  line-height: 1;
+}
+
+
+// START: 布局系统
+
+.table-center {
+  display: table;
+  .center-cell {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
+}
+
+.trans-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// END: 布局系统
+
+
+// START: 链接样式
+$caret-size: 5px;
+$text-color: $text-blue;
+$hover-text-color: $text-red;
+// 带有小箭头的链接，通常为蓝色
+.link-action {
+  font-size: inherit;
+  position: relative;
+  color: $text-blue;
+  display: inline;
+  line-height: inherit;
+  cursor: pointer;
+  @include transition($overall-transition-duration);
+
+  &:before {
+    content: '';
+    display: inline-block;
+    margin-right: 0.6em;
+    margin-bottom: -0.1em;
+    border-left: $text-blue 0.6em solid;
+    border-top: 0.45em transparent solid;
+    border-bottom: 0.45em transparent solid;
+    @include transition($overall-transition-duration);
+  }
+
+  &:hover {
+    color: $text-red;
+    &:before {
+      border-color: transparent $text-red;
+    }
+  }
+}
+
+.link-red {
+  color: $text-red;
+  cursor: pointer;
+  &:hover, &:focus {
+    color: $text-hover-red;
+    text-decoration: none;
+  }
+}
+
+.link-gray {
+  color: #b3b4b4;
+  cursor: pointer;
+  &:hover, &:focus {
+    color: $text-black;
+    text-decoration: none;
+  }
+}
+
+// END: 链接样式
+
+// START: 段落样式
+// 
+// TO DO：行间距
+// 
+// TO DO: 普通列表样式符号
+// 
+// TO DO： 脚注样式
+

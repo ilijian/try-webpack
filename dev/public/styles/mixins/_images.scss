@@ -1,0 +1,109 @@
+@charset "utf-8";
+
+@mixin image-set($image1x,$image2x) {
+  background-image: image-url($image1x);
+  background-image: image-set(image-url($image1x) 1x,image-url($image2x) 2x);
+  background-image: -webkit-image-set(image-url($image1x) 1x,image-url($image2x) 2x);
+  background-image: -moz-image-set(image-url($image1x) 1x,image-url($image2x) 2x);
+  background-image: -o-image-set(image-url($image1x) 1x,image-url($image2x) 2x);
+  background-image: -ms-image-set(image-url($image1x) 1x,image-url($image2x) 2x);
+}
+
+// 使用一个小图来模拟大图
+@mixin fake-image(
+  $image-path,    //普通图的大小
+  $image2x-path,  //双倍图的大小（如果没有，可以设置为与普通图相同路径）
+  $target-width,  //模拟目标图的宽度
+  $target-height, //模拟目标图的高度
+  $left,          //普通图在模拟目标图中的x坐标，单位为px
+  $top,           //普通图在模拟目标图中的y坐标，单位为px
+  $scale: 1,      //普通图的缩放倍数
+  $not-responsive: false) { //设置响应式，如果非响应式图片，那么图片将有最大限制，即模拟目标图的宽度
+
+  $image-width: image-width($image-path) * $scale;
+  $image-height: image-height($image-path) * $scale;
+  
+  height: 0;
+  width: 100%;
+  padding-bottom: percentage($target-height / $target-width);
+  position: relative;
+
+  @if($not-responsive) {
+    max-width: $target-width;
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: percentage($left / $target-width);
+    z-index: 0;
+    padding-top: percentage($top / $target-width);
+    width: percentage($image-width / $target-width);
+    height: 0;
+    padding-bottom: percentage($image-height / $target-width);
+    background-image: image-url($image-path);
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    
+    @if($image2x-path) {
+      @include image-set(image-url($image-path),image-url($image2x-path));
+    }
+  }
+}
+
+// 根据指定图片大小，创建一个类图片行为的空元素，其高度随宽度成比例变化，如果指定了图片路径，那么会设置背景图，如果指定了二倍图，那么会同时设定二倍背景图
+@mixin make-image-placeholder ($image-width, $image-height, $image-path: false, $image2x-path: false) {
+  display: block;
+  width: 100%;
+  height: 0;
+  padding-bottom: percentage($image-height / $image-width);
+
+  @if $image2x-path {
+    @include image-set($image-path,$image2x-path);  
+  } @else if $image-path {
+    background-image: url($image-path);
+  }
+  
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin: auto;
+}
+
+// $image-path接受符合glob pattern的表达式
+// 将指定地址的图片创建为sprite，并且可以指定缩放比例和class前缀
+@mixin generate-sprite ($image-path, $retina-image-path: null, $scale: 1, $prefix: ico){
+
+  $space-base: 10px;
+
+  $map: sprite-map($image-path, $spacing: $space-base);
+  $retina-map: null;
+  @if($retina-image-path) {
+    $retina-map: sprite-map($retina-image-path, $spacing: $space-base * 2);  
+  }
+  
+  $map-url: sprite-url($map);
+
+  @each $name in sprite-names($map) {
+    $sprite-name: $name;
+
+    $built-name: str-slice($sprite-name, 0, str-index($sprite-name, '.set') - 1);
+    
+    .#{$prefix}-#{$built-name} {
+      @include inline-block;
+      height: image-height(sprite-file($map, $name)) * $scale;
+      width: image-width(sprite-file($map, $name)) * $scale;
+      background-position: sprite-position($map, $name, 0 ,0 ,true);
+      background-size: image-width(sprite-path($map)) * $scale auto;
+      background-image: $map;
+      @media (-webkit-min-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3 / 2), (min-device-pixel-ratio: 1.5) {
+        @if($retina-map) {
+          background-image: $retina-map;
+        }
+      }
+    }
+
+  }
+}

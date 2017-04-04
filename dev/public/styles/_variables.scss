@@ -1,0 +1,114 @@
+@charset "utf-8";
+
+// 项目自定义变量
+
+$container-text-max: 1200px;
+$container-text-min: 300px;
+$container-topic-max: 1920px;
+$container-topic-min: $container-text-min;
+
+$margin-tiny-xs: 8px;
+$margin-small-xs: 15px;
+$margin-medium-xs: 25px;
+$margin-large-xs: 40px;
+$margin-huge-xs: 50px;
+
+$margin-tiny-sm: 8px;
+$margin-small-sm: 15px;
+$margin-medium-sm: 35px;
+$margin-large-sm: 45px;
+$margin-huge-sm: 75px;
+
+$margin-tiny-md: 8px;
+$margin-small-md: 15px;
+$margin-medium-md: 30px;
+$margin-large-md: 45px;
+$margin-huge-md: 75px;
+
+$margin-tiny-lg: 10px;
+$margin-small-lg: 20px;
+$margin-medium-lg: 40px;
+$margin-large-lg: 60px;
+$margin-huge-lg: 100px;
+
+$container-width-max: 980px;
+$container-width-min: 600px;
+
+$font-weight-base: 300;
+
+$header-breakpoint: 1050px;
+$footer-breakpoint: $header-breakpoint;
+$header-left-xs: 40px;
+$header-right-xs: 40px;
+$header-top-xs: 40px;
+
+$header-left-sm: 40px;
+$header-right-sm: 40px;
+$header-top-sm: 40px;
+
+$header-left-md: 40px;
+$header-right-md: 40px;
+$header-top-md: 40px;
+
+$header-left-lg: 40px;
+$header-right-lg: 40px;
+$header-top-lg: 40px;
+
+$nav-gutter-xs: auto;
+$nav-gutter-sm: 645px;
+$nav-gutter-md: 760px;
+$nav-gutter-lg: 840px;
+
+$menu-pill-width: 86px;
+
+
+//for rendering which is independent of responsive change
+
+// viewport breakpoints
+$viewport-lg: $screen-lg;
+$viewport-md: $screen-md;
+$viewport-sm: $screen-sm;
+$viewport-xs: $screen-xs;
+
+//text color or background color
+$text-white: #ffffff;
+$text-red: #eb0028;
+$text-hover-red: #d70226;
+$text-black: #101920;
+$text-smoky-gray: #969696;
+$text-bg-gray: #efefef;
+$text-white-gray: #f8f8f8;
+$text-misty-gray: #e6e6e6;
+$text-light-gray: #cccccc;
+$text-gray: #828282;
+$text-dark-gray: #555555;
+$text-blue: #0099cc;
+
+$separator-color: #dfdfdf;
+
+//text weight
+$text-normal: 300;
+$text-strong: 400;
+$text-stronger: 700;
+
+//text size
+$text-min: 12px;
+$text-sm: 14px;
+$text-base: 16px;
+$text-base-lg: 18px;
+$text-base-xl: 24px;
+$text-lg: 30px;
+$text-xl: 36px;
+$text-max: 50px;
+
+//left and right paddings of content area
+$content-side-padding: 3%;
+$content-text-indent: $content-side-padding;
+// $content-side-padding-xs: 10px;
+$z-index-max: 9999;
+
+// normal border color
+$nml-border-gray: #ccc !default;
+$nml-border-red: #eb0028 !default;
+
+$overall-transition-duration: 0.25s;

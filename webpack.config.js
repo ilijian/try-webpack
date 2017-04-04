@@ -13,7 +13,16 @@ module.exports = {
     //打包后的文件存放的根目录
     path: path.join(__dirname, 'build'),
     // filename: "entry.built.js"//打包后输出文件的文件名
-    filename: '[name].[chunkhash].js'
+    // filename: '[name].[chunkhash:8].js',  //注意：chunkhash通常都只在生产环境中使用，因此在webpack世界设定中，chunkhash配置项会与webpack-dev-server中 --hot 配置项冲突，不可同时使用
+    filename: '[name]',
+    // webpack output serve 地址，当设定后，访问地址为 [例]localhost:6789/views/demo/index.html
+    publicPath: '/views/'
+  },
+
+  // 设置js文件中require和import的解析规则
+  resolve: {
+    // 设置优先于node模块的查找路径
+    modules: [path.resolve(__dirname, "dev"), "node_modules"]
   },
 
   module: {
@@ -25,8 +34,8 @@ module.exports = {
           loader: 'vue-loader',
           options: {
             loaders: {
-              'scss': 'vue-style-loader!css-loader!sass-loader',  //解析scss语法的loader
-              'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax', //解析sass语法
+              'sass': 'vue-style-loader!css-loader!sass-loader',  //解析sass语法的loader
+              'scss': 'vue-style-loader!css-loader!sass-loader?indentedSyntax', //解析scss语法
             }
           }
         }
@@ -56,8 +65,12 @@ module.exports = {
   ].concat(configHtmlPlugins()),
 
   // webpack默认的本地开发服务器，但是仍然需要手动下载webpack-dev-server模块
+  // webpack-dev-server启动了一个使用 express 的 Http服务器，用来伺服资源文件，服务器 和 client 使用了 websocket 协议通讯，
+  // 原始文件作出改动后， webpack-dev-server 会触发webpack的实时编译，但是编译后的文件并没有输出到目标文件夹，而是暂存到内存中
+  // 此时浏览器访问的资源文件都来自于内存，而不是来自于目标文件夹下的编译文件
   devServer: {
-    contentBase: path.join(__dirname, 'build'), //服务器指向的本地目录
+    //注意：不写hot: true，否则浏览器无法自动更新；也不要写colors:true，progress:true等，webpack2.x已不支持这些
+    contentBase: path.join(__dirname, 'dev'), //服务器指向的本地硬盘目录，除非想要serve静态文件（也就是不经webpack编译的文件），否则不必使用此项，并且publicPath设定的路由优先级更高
     historyApiFallback: true, //在开发单页应用时非常有用，它依赖于HTML5 history API，如果设置为true，所有的跳转将指向index.html
     inline: true,  //源码改变实时刷新,
     port: 6789, //服务器所用的端口
@@ -82,7 +95,7 @@ function configHtmlPlugins() {
       // 是否将入口文件打包产生的输出文件插入到html文件中
       inject: true,
       // 是否加上在引用处加上webpack此次打包产生的hash，格式为（src="built.js?[hash]"）
-      hash: true,
+      // hash: true,
       // template: 指定用于输出html文件的模板html或者种子html
       template: hbs,
       // chunks: 指定将会插入哪些打包后的文件
@@ -97,18 +110,15 @@ function configHtmlPlugins() {
 function getEntry() {
   var files = glob.sync(path.join(__dirname, 'dev/pages/**/entry.js'));
   var entries = {},
-    entry, dirname, basename, pathname, extname;
+    entry, chunkname;
 
   for (var i = 0; i < files.length; i++) {
     entry = files[i];
-    dirname = path.dirname(entry);
-    extname = path.extname(entry);
-    basename = path.basename(entry, extname);
-    pathname = path.join(dirname, basename);
-    // pathname = pathDir ? pathname.replace(new RegExp('^' + pathDir), '') : pathname;
-    // pathname带有路径信息，这样打包后的js文件会也会被编译到输出文件夹中的对应路径中
-    pathname = pathname.replace(new RegExp('^' + path.join(__dirname, 'dev/pages')), '');
-    entries[pathname] = entry;  //默认只有一个入口文件
+    chunkname = path.relative(path.resolve(__dirname,'dev/pages'),entry)
+    // chunkname的形式为'demo/entry.js'，其中包含了入口文件的路径信息和文件后缀信息，这样打包后的文件会按照指定路径直接写入到output指定文件夹下
+    // 因为包含了后缀信息，所以在output配置中filename项不再需要指定后缀
+    entries[chunkname] = entry;  //此配置中只有允许有一个入口文件
   }
   return entries;
 }
+
