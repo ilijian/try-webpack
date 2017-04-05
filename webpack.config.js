@@ -5,6 +5,7 @@ var HbsToHtmlPlugin = require('./plugins/HbsToHtml.js');
 var entries = getEntry();
 
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   // entry:  __dirname + "/dev/entry.js",//单一入口文件，也可以以传入对象或者数组的方式配置成多入口文件
@@ -33,35 +34,61 @@ module.exports = {
         use: {
           loader: 'vue-loader',
           options: {
+            // postcss选项
+            // 目前已经支持使用postcss.config.s | .postcssrc | postcss field in package.json等方式
+            postcss: [require('postcss-cssnext')()],  // 数组参数，接受一组POSTCSS插件作为输入
+            // 对象参数，接受对象形式的配置(http://vue-loader.vuejs.org/en/features/postcss.html)
+            // postcss: {
+            //   plugins: [],
+            //   options: {
+            //     parser: sugarss
+            //   }
+            // },
+            // loaders: {
+            //   'sass': 'vue-style-loader!css-loader!sass-loader',  //解析sass语法的loader
+            //   'scss': 'vue-style-loader!css-loader!sass-loader?indentedSyntax', //解析scss语法
+            // }
             loaders: {
-              'sass': 'vue-style-loader!css-loader!sass-loader',  //解析sass语法的loader
-              'scss': 'vue-style-loader!css-loader!sass-loader?indentedSyntax', //解析scss语法
+              // 针对产生的css使用ExtractTextPlugin插件提取
+              sass: ExtractTextPlugin.extract({
+                // 注意：loader的参数可以通过JSON.stringify(OptionObject)这种形式传入
+                use: 'css-loader!sass-loader?' + JSON.stringify({includePaths: path.resolve(__dirname, 'dev')}),
+                fallback: 'vue-style-loader'
+              }),
+              // vue-style-loader 的作用是将生成的css代码inline（创建style标签的方式）到页面中
+              // sass: 'vue-style-loader!css-loader!sass-loader?includePaths=' + path.resolve(__dirname, 'dev'),  //解析sass语法的loader
             }
           }
         }
       },
-      {
-        test: /\.hbs$/,
-        use: {
-          loader: 'handlebars-loader'
-        }
-      },
+      // {
+      //   test: /\.hbs$/,
+      //   use: {
+      //     loader: 'handlebars-loader'
+      //   }
+      // },
       {
         test: /\.json$/,  //用于匹配loaders所处理文件拓展名的正则表达式
         use: 'json-loader', //具体loader的名称
         exclude: /node_modules/
-      },
-      // {
-      //   test: /\.css$/,
-      //   loader: 'style!css?modules', //感叹号用户分割针对同一个test的不同loader，这样不同loader可以同时使用；?modules表示将css私有化，这样不用模块之间就户不会出现污染
-      //   exclude: /node_modules/
-      // }
+      }
     ]
   },
 
   plugins: [
     // 定制化Plugin，用于将定制化的hbs文件渲染成合法的html
-    new HbsToHtmlPlugin()
+    new HbsToHtmlPlugin(),
+    // 对于多入口的配置，ExtractTextPlugin会为每个入口分别提取出css
+    new ExtractTextPlugin({
+      //Name of the result file. May contain [name], [id] and [contenthash]
+      filename: function(getPath) {
+        
+        // return path.join(path.dirname(getPath('[name].css')), 'style.css');
+        return getPath('[name].css').replace(/\.js.css$/, '.css');
+      }, 
+      allChunks: true
+    })
+
   ].concat(configHtmlPlugins()),
 
   // webpack默认的本地开发服务器，但是仍然需要手动下载webpack-dev-server模块
@@ -101,6 +128,7 @@ function configHtmlPlugins() {
       // chunks: 指定将会插入哪些打包后的文件
       chunks: [entry]
     }));
+    
   }
 
   return plugins;
