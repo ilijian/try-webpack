@@ -78,12 +78,13 @@ module.exports = {
   plugins: [
     // 定制化Plugin，用于将定制化的hbs文件渲染成合法的html
     new HbsToHtmlPlugin(),
-    // 对于多入口的配置，ExtractTextPlugin会为每个入口分别提取出css
+    // 对于多入口的配置，ExtractTextPlugin会为每个入口分别提取出css，并且只需要new一个实例即可
     new ExtractTextPlugin({
       //Name of the result file. May contain [name], [id] and [contenthash]
       filename: function(getPath) {
         
         // return path.join(path.dirname(getPath('[name].css')), 'style.css');
+        // 对于多入口文件，必须使用 contenthash、name等变量性质的配置，并且因为name中有可能包含路径信息，所以最好不要省略name（如本配置中）
         return getPath('[name].css').replace(/\.js.css$/, '.css');
       }, 
       allChunks: true
@@ -128,7 +129,7 @@ function configHtmlPlugins() {
       // chunks: 指定将会插入哪些打包后的文件
       chunks: [entry]
     }));
-    
+
   }
 
   return plugins;
