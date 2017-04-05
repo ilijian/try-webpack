@@ -1,10 +1,18 @@
 var path = require('path');
 var glob = require('glob');
+var webpack = require('webpack');
+
 var HbsToHtmlPlugin = require('./plugins/HbsToHtml.js');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+var _ = {
+  // 公共js文件的chunk name
+  vendor: 'common/vendor.js',
+  manifest: 'common/manifest.js'
+};
 
 var entries = getEntry();
-
-var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   // entry:  __dirname + "/dev/entry.js",//单一入口文件，也可以以传入对象或者数组的方式配置成多入口文件
@@ -61,7 +69,10 @@ module.exports = {
 
   plugins: [
     // 定制化Plugin，用于将定制化的hbs文件渲染成合法的html
-    new HbsToHtmlPlugin()
+    new HbsToHtmlPlugin(),
+    // 将所有入口文件的公共部分提取出来，形成一个单独的js文件，chunk name 为 common/vendor.js
+    new  webpack.optimize.CommonsChunkPlugin({name: _.vendor}),
+    
   ].concat(configHtmlPlugins()),
 
   // webpack默认的本地开发服务器，但是仍然需要手动下载webpack-dev-server模块
@@ -99,7 +110,7 @@ function configHtmlPlugins() {
       // template: 指定用于输出html文件的模板html或者种子html
       template: hbs,
       // chunks: 指定将会插入哪些打包后的文件
-      chunks: [entry]
+      chunks: [_.vendor, entry]
     }));
   }
 
@@ -119,6 +130,7 @@ function getEntry() {
     // 因为包含了后缀信息，所以在output配置中filename项不再需要指定后缀
     entries[chunkname] = entry;  //此配置中只有允许有一个入口文件
   }
+
   return entries;
 }
 

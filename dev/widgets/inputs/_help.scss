@@ -1,0 +1,76 @@
+.get-help {
+  visibility: hidden;
+  position: absolute;
+  width: 0.4 * $input-height-base;
+  height: 0.4 * $input-height-base;
+  right: 0.3 * $input-height-base;
+  // background-color: $text-black;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAmVBMVEUQGCAQGCAQGCAQGCAQGCAQGCAQGCAQGCAQGCAQGCAQGCAQGCAQGCAQGCAQGCAQGCAQGCAQGCAQGCAQGCAQGCAQGCAQGCAQGCAQGCAQGCAQGCAQGCAQGCAQGCAQGCAQGCAQGCAQGCAQGCAQGCAgJy8wNz5ARk1QVltgZWpwdHmAhIiPk5efo6avsrW/wcTP0dLf4OHv8PD////yBrtvAAAAI3RSTlMACAkKDA0jJCUyV1iIiYqYmZqbnMjJz9DR6Onq6/T19vj5+nYITrIAAAEVSURBVHgBhdLrcqpQDAXg4MGDYqly0aKIlb1A6wWLef+H61A7wYAM3781O5MEJtSw3Xm02e830dy1qcsJUog0cEiz3jIomWfRk/8rdKwcEtM1XlhPZXyCl5K/HqMP9IhHVPPQy/td0EgurhVX5QHC1EMCiQfme3ljPkGERONUUsWXHDgyNz3SMbkSjvyN2pXPEC75TUH56H3iC4RPEdpu/AUR0RYtF65yiC1lnfd7gUbWLjjrd2StEfldv2PbWvLIVygR+Sqf+AzFJ1ePKHIorvzqh+KgV9iNiUL9kSWehUTkmP4CMxk4mHeqjWL0iP8NH+3A2QsnRkfs0BPLM1CMZ5E2CXYQn+GEuuzZYpkYkywXM5vEDxjqb0sLOU3xAAAAAElFTkSuQmCC");
+  background-repeat: no-repeat;
+  background-size: cover;
+  top: 0.3 * $input-height-base;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: $overall-transition-duration;
+  // &:hover {
+  //   background-color: black;
+  // }
+}
+
+.help {
+  display: none;
+  @extend %box-shadow-base;
+  background-color: $text-white;
+  $border-color: rgba(0,0,0,.2);
+  padding: 10px 16px 12px 16px;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-base;
+  position: absolute;
+  // left: 0;
+  max-width: 100%;
+  right: 0;
+  top: $input-height-base + 5px;
+  z-index: 9;
+
+  .arrow {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    height: 10px;
+    width: 20px;
+    overflow: hidden;
+    &:before {
+      content: '';
+      width: 16px;
+      height: 16px;
+      background-color: $text-white;
+      border: 1px solid $border-color;
+      transform: rotate(45deg);
+      position: absolute;
+      top: 5px;
+      left: 1px;
+    }  
+  }
+  
+}
+
+.invalid {
+  .input {
+    // border-color: lighten($text-red,30%);
+    border-color: $bg-invalid;
+    background-color: $bg-invalid;
+  }
+  .get-help {
+    visibility: visible;
+
+    &:hover + .help {
+      display: block;
+    }
+  }
+
+  .field.focus, .field:focus {
+    .help {
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>One Input</title>
+  <link rel="stylesheet" href="/assets/styles/base.scss">
+  <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <style>
+    .pad {
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container-text">
+    <form action="">
+      <div class="row">
+        <div class="col-md-6 pad">
+          <radioset></radioset>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 pad">
+          <input 
+            type="textarea" 
+            text="初始文本"
+            is="one-text" 
+            id="x2" 
+            name="x2" 
+            test="email" 
+            placeholder="普通的text输入单位未报错" 
+            hint="This field needs a correct email as input" 
+            required>
+        </div>
+        <div class="col-md-6 pad">
+          <one-text id="x1" name="x1" placeholder="普通的text输入单位验证出错" class="invalid" hint="This is a required field"></one-text>
+        </div>
+        <div class="col-md-6 pad">
+          <one-text id="yyy" name="yyy" type="textarea" placeholder="Text area控件" value="Text: Error Report"></one-text>
+        </div>
+        <div class="col-md-6 pad">
+          <one-text 
+            id="yyy" 
+            class="invalid"
+            hint="请按照要求输入"
+            name="yyy" 
+            type="textarea" 
+            placeholder="Text area控件" 
+            value="Text: Error Report">
+          </one-text>
+        </div>
+        <div class="col-md-6 pad">
+          <choose-file 
+            id="zzz" 
+            name="zzz" 
+            placeholder="请填入合适的值" 
+            path="C:\fakepath\FireShot Capture 6 - 3. 返校促销 _ Back to School - Pr_ - http___cf.onepluscorp.cn_pages_viewpage.pdf"
+            btn-text="浏览" 
+            required></choose-file>
+        </div>
+        <div class="col-md-6 pad">
+          <one-select 
+            id="y1" 
+            name="y1" 
+            required
+            placeholder="Choose an option"
+            selected="b"
+            :options="[
+              {value: 'a',text: 'A'},
+              {value: 'b',text: 'B'},
+              {value: 'c',text: 'C'},
+              {value: 'd',text: 'D'}]">
+          </one-select>
+        </div>
+        <div class="col-md-6 pad">
+          <one-select 
+            id="y2" 
+            class="invalid"
+            name="y2" 
+            type="select" 
+            placeholder="Choose an option"
+            :options="[
+              {value: 'a',text: 'A'},
+              {value: 'b',text: 'B'},
+              {value: 'c',text: 'C'},
+              {value: 'd',text: 'D'}]">
+          </one-select>
+        </div>
+        <div class="col-md-6 pad">
+          <checkbox id="y21" name="y2" type="checkbox" label="Checkbox A" checked></checkbox>
+          <checkbox id="y22" name="y2" type="checkbox" label="Checkbox B" :checked="false" required></checkbox>
+        </div>
+        <div class="col-md-6 pad">
+          <checkbox id="y31" name="y3" type="radio" label="radio A" :checked="false"></checkbox>
+          <checkbox id="y32" name="y3" type="radio" label="radio B" :checked="false"></checkbox>
+        </div>
+      </div>
+      
+      <button is="one-button" type="submit" class="btn-red">Submit</button>
+    </form>
+
+    <form action="">
+      <div class="row">
+        <div class="col-md-6 pad">
+          <checkset 
+            title="A group of checkboxes (has required children)"
+            id="checkset" 
+            type="checkbox"
+            name="checkbox"
+            hint="Some items in this group is required"
+            :fields="[
+              {
+                label: 'A',
+                value: 'a'
+              },
+              {
+                label: 'B',
+                value: 'b',
+                required: true
+              },
+              {
+                label: 'C',
+                value: 'c',
+                required: true
+              },
+              {
+                label: 'D',
+                value: 'd'
+              }
+            ]"
+            ></checkset>
+        </div>
+        <div class="col-md-6 pad">
+          <checkset ref="radios"
+            title="A group of checkboxes (optional)"
+            id="checkset2" 
+            type="radio"
+            name="checkset2"
+            required
+            :fields="[
+              {
+                label: 'A',
+                value: 'a'
+              },
+              {
+                label: 'B',
+                value: 'b'
+              },
+              {
+                label: 'C',
+                value: 'c'
+              },
+              {
+                label: 'D',
+                value: 'd'
+              }
+            ]"
+            ></checkset>    
+        </div>
+      </div>
+      
+    </form>  
+
+    <form action="" id="address-form" is="one-form">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6">
+          <input 
+            is="one-text" 
+            id="firstname" 
+            name="firstname" 
+            test="name" 
+            placeholder="First Name" 
+            hint="Require your first name to continue"
+            required>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <input is="one-text" id="lastname" name="lastname" test="name" placeholder="Last Name" hint="Require your last name to continue" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6">
+          <input 
+            is="one-select"
+            id="country" 
+            name="country" 
+            placeholder="Country" 
+            required
+            :options="[
+              {value: 'a',text: 'A'},
+              {value: 'b',text: 'B'},
+              {value: 'c',text: 'C'},
+              {value: 'd',text: 'D'}]">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 cols-sm-6">
+          <input 
+            is="one-text" 
+            id="street1" 
+            name="street1" 
+            test="street1" 
+            placeholder="House Number, Street Address" 
+            hint="Require your address to continue" 
+            required>
+        </div>
+        <div class="col-xs-12 cols-sm-6">
+          <input 
+            is="one-text" 
+            id="street2" 
+            name="street2" 
+            test="street1" 
+            placeholder="Apartment, Unit, Building, Floor, etc.">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6">
+          <input is="one-text" id="city" name="city" test="city" placeholder="City" required>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <input 
+            is="one-select" 
+            id="state" 
+            name="state" 
+            placeholder="State/Province/Region" 
+            required
+            :options="[
+              {value: 'a',text: 'A'},
+              {value: 'b',text: 'B'},
+              {value: 'c',text: 'C'},
+              {value: 'd',text: 'D'}]">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 cols-sm-6">
+          <input is="one-text" id="zipcode" name="zipcode" test="zipcode" placeholder="Zip/PostalCode" hint="Require a zip/postal code to continue" required>
+        </div>
+        <div class="col-xs-12 cols-sm-6">
+          <input is="one-text" id="telephone" name="telephone" test="telephone" placeholder="Phone Number">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 text-right">
+          <button is="submit" type="submit" class="btn-red" @btn-click="onSubmit">Continue</button>
+          <button id="submit" type="submit">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  
+  <div class="margin-huge" style="height: 200px"></div>
+
+  <script src="input.vue.js"></script>
+</body>
+</html>

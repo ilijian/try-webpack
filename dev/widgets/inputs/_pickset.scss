@@ -1,0 +1,39 @@
+$bg-invalid: #fed9d9;
+
+.check-set, .radio-set {
+  display: block;
+  border: none;
+  padding: 0;
+  margin: 0;
+
+  .field-group {
+    position: relative;
+    border-radius: $border-radius-base; //与普通的input一致
+    padding-left: 16px; //与普通的input左边距一致
+    padding-right: 28px;  //为help留出空隙
+    margin-bottom: 15px;
+  }
+
+  .field-pack {
+    display: inline-block;
+    margin-bottom: 0;
+  }
+
+  &.invalid {
+    .field-group {
+      background-color: $bg-invalid;
+
+      .invalid {
+        .checkbox-puppet, .radio-puppet {
+          &:before {
+            background-color: darken($bg-invalid, 10%);
+          }
+        }
+      }
+    }
+  }
+
+  legend {
+
+  }
+}

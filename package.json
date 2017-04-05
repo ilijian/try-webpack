@@ -4,7 +4,7 @@
   "description": "",
   "main": "entry.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack-dev-server --devtool eval-source-map",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --devtool cheap-source-map",
     "build": "cross-env NODE_ENV=production webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,6 +13,7 @@
   "devDependencies": {
     "bootstrap-sass": "^3.3.7",
     "cross-env": "^4.0.0",
+    "extract-text-webpack-plugin": "^2.1.0",
     "front-matter": "^2.1.2",
     "handlebars": "^4.0.6",
     "hogan.js": "^3.0.2",
