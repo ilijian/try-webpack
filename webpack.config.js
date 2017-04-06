@@ -75,6 +75,12 @@ module.exports = {
       //   }
       // },
       {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        use: {
+          loader: 'file-loader?name=[sha512:hash:base64:7].[ext]'
+        }
+      },
+      {
         test: /\.json$/,  //用于匹配loaders所处理文件拓展名的正则表达式
         use: 'json-loader', //具体loader的名称
         exclude: /node_modules/

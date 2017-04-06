@@ -2,6 +2,8 @@ var Vue = require('vue/dist/vue.common.js');
 
 var OneButton = require('widgets/button/button.vue');
 
+var FakeImage = require('widgets/images/fake.vue');
+
 new Vue({
   el: '#page-root',
   data: {
