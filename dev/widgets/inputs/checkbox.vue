@@ -1,5 +1,5 @@
 <style lang="sass">
-  @import "public/styles/essentials";
+  @import "assets/styles/essentials";
   @import "field";
   @import "pick";
 

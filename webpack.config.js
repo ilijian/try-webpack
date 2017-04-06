@@ -8,8 +8,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var _ = {
   // 公共js文件的chunk name
-  vendor: 'common/vendor.js',
-  manifest: 'common/manifest.js'
+  vendor: 'assets/scripts/vendor.js'
 };
 
 var entries = getEntry();
@@ -74,10 +73,17 @@ module.exports = {
       //     loader: 'handlebars-loader'
       //   }
       // },
+      // 图片处理：可以处理CSS中的图片，但是记得在sass url中要么使用相对sass文件的相对路径，要么可以使用 ~ 号
+      // 例如: background-image: url(~/assets/)
+      // [参考链接](https://github.com/bholloway/resolve-url-loader/issues/5)
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
         use: {
-          loader: 'file-loader?name=[sha512:hash:base64:7].[ext]'
+          loader: 'file-loader',  //另外还有一个 url-loader 可以设定，当图片小于某个情况时，可以以base64的形式嵌入到样式文件中
+          options: {
+            context: path.resolve(__dirname, 'dev'),  // 指定图片路径所相对的根路径，如果未设定此值，那么 name 中path所保存的路径将会从项目根目录开始
+            name: '[path][name][sha512:hash:base64:7].[ext]'
+          }
         }
       },
       {

@@ -98,7 +98,7 @@
 
 <style lang="sass">
 
-  @import "public/styles/essentials";
+  @import "assets/styles/essentials";
 
   $border-radius-base: 2px;
   $btn-border-width: 1px;

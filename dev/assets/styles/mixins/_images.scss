@@ -1,12 +1,12 @@
 @charset "utf-8";
 
 @mixin image-set($image1x,$image2x) {
-  background-image: image-url($image1x);
-  background-image: image-set(image-url($image1x) 1x,image-url($image2x) 2x);
-  background-image: -webkit-image-set(image-url($image1x) 1x,image-url($image2x) 2x);
-  background-image: -moz-image-set(image-url($image1x) 1x,image-url($image2x) 2x);
-  background-image: -o-image-set(image-url($image1x) 1x,image-url($image2x) 2x);
-  background-image: -ms-image-set(image-url($image1x) 1x,image-url($image2x) 2x);
+  background-image: url($image1x);
+  background-image: image-set(url($image1x) 1x,url($image2x) 2x);
+  background-image: -webkit-image-set(url($image1x) 1x,url($image2x) 2x);
+  background-image: -moz-image-set(url($image1x) 1x,url($image2x) 2x);
+  background-image: -o-image-set(url($image1x) 1x,url($image2x) 2x);
+  background-image: -ms-image-set(url($image1x) 1x,url($image2x) 2x);
 }
 
 // 使用一个小图来模拟大图
@@ -43,13 +43,13 @@
     width: percentage($image-width / $target-width);
     height: 0;
     padding-bottom: percentage($image-height / $target-width);
-    background-image: image-url($image-path);
+    background-image: url($image-path);
     background-size: contain;
     background-position: bottom;
     background-repeat: no-repeat;
     
     @if($image2x-path) {
-      @include image-set(image-url($image-path),image-url($image2x-path));
+      @include image-set(url($image-path),url($image2x-path));
     }
   }
 }

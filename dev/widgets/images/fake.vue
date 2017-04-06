@@ -1,5 +1,5 @@
 <style lang="sass">
-  @import "public/styles/essentials";
+  @import "assets/styles/essentials";
 
   @mixin render-responsive-images($image-path,$image-type:'jpg') {
     //background-size: contain;
@@ -44,6 +44,6 @@
   }
 
   .image-demo {
-    @include render-responsive-images('/assets/images/demo', 'png');
+    @include render-responsive-images('~assets/images/demo', 'png');
   }
 </style>
