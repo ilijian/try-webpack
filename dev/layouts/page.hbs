@@ -36,9 +36,9 @@
   <!-- 指向其他商城的索引 -->
   <link href="${{{url}}}" rel="alternate" hreflang="${{lang}}">
   ${{/alternatives}}
-
-  <!-- 有些情况下，希望追加样式表，而不是使用构建产生的css（然而我并不知道什么情况下会用到这个），可能是想要引用外部css？ -->
+  
   ${{#stylesheets}}
+  <!-- 有些情况下，希望追加样式表，而不是使用构建产生的css（然而我并不知道什么情况下会用到这个），可能是想要引用外部css？ -->
   <link rel="stylesheet" href="${{.}}">
   ${{/stylesheets}}
   <!-- 谷歌字体CDN引用 -->
@@ -47,10 +47,10 @@
 <body>
   ${{> content}}
   
+  ${{#scripts}}
   <!-- 有些情况下，希望追加脚本文件，而不是使用构建产生的js（我同样并不知道什么情况下会用到这个，也许是引用位于谷歌服务器上的js）-->
   <!-- 警告：这些js不会在最底部，最底部的js是构建工具自动生成并插入的 -->
-  ${{#scripts}}
-  <script src="${{{.}}}"></script>
+  <script type="text/javascript" src="${{{.}}}"></script>
   ${{/scripts}}
 </body>
 </html>

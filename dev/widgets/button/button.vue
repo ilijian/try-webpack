@@ -181,6 +181,7 @@
 
   @mixin make-size ($font-size: $text-base) {
     font-size: $font-size * 100 / 1920px * 1vw;
+    // 优化：font-size的最小值不一定是12，应当根据传入的参数来定，不然所有size的button到移动端都会统一大小
     @include viewport-narrower-than(12px / $font-size * 1920px ) {
       font-size: 12px;
     }
@@ -302,51 +303,51 @@
       }
     }
 
-  }
-
-  // Color System
-  .btn-red {
-    @include make-color();
-  }
-
-  .btn-black {
-    @include make-color($bg-color: $text-black);
-  }
-
-  .btn-white {
-    @include make-color($bg-color: $text-white);
-  }
-
-  // Ghost buttons
-  .btn-ghost {
-    
+    // Color System
     &.btn-red {
-      @include make-ghost-color();
-    }
-
-    &.btn-white {
-      @include make-ghost-color($border-color: $text-white);
+      @include make-color();
     }
 
     &.btn-black {
-      @include make-ghost-color($border-color: $text-black);
+      @include make-color($bg-color: $text-black);
     }
-    
-  }
 
-  // Size system
+    &.btn-white {
+      @include make-color($bg-color: $text-white);
+    }
 
-  .btn-xl {
-    @include make-size($text-base-xl);
-  }
+    // Ghost buttons
+    &.btn-ghost {
+      
+      &.btn-red {
+        @include make-ghost-color();
+      }
 
-  .btn-lg {
-    @include make-size($text-base-lg);
-  }
-  .btn-sm {
-    @include make-size($text-sm);
-  }
-  .btn-xs {
-    @include make-size($text-min); 
+      &.btn-white {
+        @include make-ghost-color($border-color: $text-white);
+      }
+
+      &.btn-black {
+        @include make-ghost-color($border-color: $text-black);
+      }
+      
+    }
+
+    // Size system
+
+    &.btn-xl {
+      @include make-size($text-base-xl);
+    }
+
+    &.btn-lg {
+      @include make-size($text-base-lg);
+    }
+    &.btn-sm {
+      @include make-size($text-sm);
+    }
+    &.btn-xs {
+      @include make-size($text-min); 
+    }
+
   }
 </style>

@@ -19,7 +19,9 @@ body,html {
   min-height: 100vh;
 }
 
-p,h1,h2,h3,h4,h5,h6,dl,dt,dd {margin: 0;}
+p,h1,h2,h3,h4,h5,h6,dl,dt,dd {
+  margin: 0;
+}
 
 /*text or background color*/
 .text-white {color: $text-white;}
@@ -39,10 +41,14 @@ p,h1,h2,h3,h4,h5,h6,dl,dt,dd {margin: 0;}
 .text-stronger {font-weight: $text-stronger;}
 
 //text-size
-.text-small {font-size: $text-small;}
-.text-base {font-size: $text-base;}
-.text-big {font-size: $text-big;}
-.text-bigger {font-size: $text-bigger;}
+.text-min {font-size: $text-min}
+.text-sm {font-size: $text-sm}
+.text-base {font-size: $text-base}
+.text-base-lg {font-size: $text-base-lg}
+.text-base-xl {font-size: $text-base-xl}
+.text-lg {font-size: $text-lg}
+.text-xl {font-size: $text-xl}
+.text-max {font-size: $text-max}
 
 //text transform - uppercase, lowercase, capitalize,
 .text-uppercase, .uppercase {text-transform: uppercase;}
@@ -251,6 +257,7 @@ a, .link {
 
 %margin-base {
   display: block;
+  height: 5vw;
   @include clearfix;
 }
 

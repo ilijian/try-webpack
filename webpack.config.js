@@ -5,10 +5,12 @@ var webpack = require('webpack');
 var HbsToHtmlPlugin = require('./plugins/HbsToHtml.js');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+// var ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 var _ = {
   // 公共js文件的chunk name
-  vendor: 'assets/scripts/vendor.js'
+  vendor: 'assets/scripts/vendor',
+  production: process.env.NODE_ENV === "production"
 };
 
 var entries = getEntry();
@@ -21,9 +23,9 @@ module.exports = {
     path: path.join(__dirname, 'build'),
     // filename: "entry.built.js"//打包后输出文件的文件名
     // filename: '[name].[chunkhash:8].js',  //注意：chunkhash通常都只在生产环境中使用，因此在webpack世界设定中，chunkhash配置项会与webpack-dev-server中 --hot 配置项冲突，不可同时使用
-    filename: '[name]',
+    filename: _.production ? '[name].[chunkhash:8].js' : '[name]',
     // webpack output serve 地址，当设定后，访问地址为 [例]localhost:6789/views/demo/index.html
-    publicPath: '/views/'
+    publicPath: _.production ? 'https://opstatics.com/store/' : '/store/'
   },
 
   // 设置js文件中require和import的解析规则
@@ -67,6 +69,24 @@ module.exports = {
           }
         }
       },
+      {
+        test: /\.scss$/,
+        use: 
+          ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            //resolve-url-loader may be chained before sass-loader if necessary
+            use: ['css-loader', 'sass-loader?' + JSON.stringify({includePaths: path.resolve(__dirname, 'dev')})]
+          })
+      },
+      {
+        test: /\.css$/,
+        use: 
+          ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            //resolve-url-loader may be chained before sass-loader if necessary
+            use: ['css-loader']
+          })
+      },
       // {
       //   test: /\.hbs$/,
       //   use: {
@@ -82,7 +102,19 @@ module.exports = {
           loader: 'file-loader',  //另外还有一个 url-loader 可以设定，当图片小于某个情况时，可以以base64的形式嵌入到样式文件中
           options: {
             context: path.resolve(__dirname, 'dev'),  // 指定图片路径所相对的根路径，如果未设定此值，那么 name 中path所保存的路径将会从项目根目录开始
-            name: '[path][name][sha512:hash:base64:7].[ext]'
+            name: _.production ? '[path][name].[sha512:hash:base64:8].[ext]' : '[path][name].[ext]'
+          }
+        }
+      },
+      // 字体文件
+      {
+        test: /\.(eot|svg|ttf|otf|woff|woff2)$/i,
+        use: {
+          loader: 'url-loader',
+          options: {
+            context: path.resolve(__dirname, 'dev'),
+            limit: 10000, // 小于10KB的会被嵌入到css文件中
+            name: _.production ? '[path][name].[sha512:hash:base64:8].[ext]' : '[path][name].[ext]' 
           }
         }
       },
@@ -99,6 +131,11 @@ module.exports = {
     new HbsToHtmlPlugin(),
     // 将所有入口文件的公共部分提取出来，形成一个单独的js文件，chunk name 为 common/vendor.js
     new  webpack.optimize.CommonsChunkPlugin({name: _.vendor}),
+    // 支持将css和js嵌入到页面
+    // new ScriptExtHtmlWebpackPlugin({
+    //   inline: /\.inline\.js$/,
+    //   defaultAttribute: 'sync'
+    // }),
     // 对于多入口的配置，ExtractTextPlugin会为每个入口分别提取出css，并且只需要new一个实例即可
     new ExtractTextPlugin({
       //Name of the result file. May contain [name], [id] and [contenthash]
@@ -106,7 +143,7 @@ module.exports = {
         
         // return path.join(path.dirname(getPath('[name].css')), 'style.css');
         // 对于多入口文件，必须使用 contenthash、name等变量性质的配置，并且因为name中有可能包含路径信息，所以最好不要省略name（如本配置中）
-        return getPath('[name].css').replace(/\.js.css$/, '.css');
+        return _.production ? getPath('[name].[contenthash:8].css').replace(/\.js./, '.') : getPath('[name].css').replace(/\.js.css$/, '.css');
       }, 
       allChunks: true
     })
@@ -123,7 +160,9 @@ module.exports = {
     historyApiFallback: true, //在开发单页应用时非常有用，它依赖于HTML5 history API，如果设置为true，所有的跳转将指向index.html
     inline: true,  //源码改变实时刷新,
     port: 6789, //服务器所用的端口
-  }
+  },
+
+  devtool: _.production ? '' : 'cheap-module-eval-source-map'
 };
 
 function configHtmlPlugins() {
@@ -151,6 +190,8 @@ function configHtmlPlugins() {
       chunks: [_.vendor, entry]
     }));
 
+    // plugins.push(new HtmlWebpackInlineSourcePlugin());
+
   }
 
   return plugins;
@@ -165,8 +206,9 @@ function getEntry() {
   for (var i = 0; i < files.length; i++) {
     entry = files[i];
     chunkname = path.relative(path.resolve(__dirname,'dev/pages'),entry)
-    // chunkname的形式为'demo/entry.js'，其中包含了入口文件的路径信息和文件后缀信息，这样打包后的文件会按照指定路径直接写入到output指定文件夹下
-    // 因为包含了后缀信息，所以在output配置中filename项不再需要指定后缀
+    // chunkname的形式为'demo/entry'，其中包含了入口文件的路径信息和文件后缀信息，这样打包后的文件会按照指定路径直接写入到output指定文件夹下
+    // 去掉了后缀
+    chunkname = chunkname.replace(/\.js$/, '');
     entries[chunkname] = entry;  //此配置中只有允许有一个入口文件
   }
 

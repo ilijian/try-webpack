@@ -1,0 +1,1 @@
+console.log('see this script will be inlined');
