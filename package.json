@@ -8,6 +8,7 @@
     "serve": "cross-env NODE_ENV=development webpack-dev-server --port 3000 --host 0.0.0.0",
     "build": "cross-env NODE_ENV=production webpack",
     "makefont": "gulp makefont",
+    "makesprite": "gulp makesprite",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jian.Li",
@@ -19,6 +20,7 @@
     "file-loader": "^0.11.1",
     "front-matter": "^2.1.2",
     "gulp": "^3.9.1",
+    "gulp.spritesmith": "^6.4.0",
     "handlebars": "^4.0.6",
     "hogan.js": "^3.0.2",
     "html-webpack-plugin": "^2.28.0",

@@ -1,0 +1,274 @@
+// SCSS variables are information about icon's compiled state, stored under its original file name
+//
+// .icon-home {
+//   width: $icon-home-width;
+// }
+//
+// The large array-like variables contain all information about a single icon
+// $icon-home: x y offset_x offset_y width height total_width total_height image_path;
+//
+// At the bottom of this section, we provide information about the spritesheet itself
+// $spritesheet: width height image $spritesheet-sprites;
+$blog-fb-name: 'blog-fb';
+$blog-fb-x: 0px;
+$blog-fb-y: 0px;
+$blog-fb-offset-x: 0px;
+$blog-fb-offset-y: 0px;
+$blog-fb-width: 35px;
+$blog-fb-height: 35px;
+$blog-fb-total-width: 105px;
+$blog-fb-total-height: 70px;
+$blog-fb-image: '~assets/images/$sprites/demo-sprites.png';
+$blog-fb: (0px, 0px, 0px, 0px, 35px, 35px, 105px, 70px, '~assets/images/$sprites/demo-sprites.png', 'blog-fb', );
+$blog-gp-name: 'blog-gp';
+$blog-gp-x: 35px;
+$blog-gp-y: 0px;
+$blog-gp-offset-x: -35px;
+$blog-gp-offset-y: 0px;
+$blog-gp-width: 35px;
+$blog-gp-height: 35px;
+$blog-gp-total-width: 105px;
+$blog-gp-total-height: 70px;
+$blog-gp-image: '~assets/images/$sprites/demo-sprites.png';
+$blog-gp: (35px, 0px, -35px, 0px, 35px, 35px, 105px, 70px, '~assets/images/$sprites/demo-sprites.png', 'blog-gp', );
+$blog-ig-name: 'blog-ig';
+$blog-ig-x: 0px;
+$blog-ig-y: 35px;
+$blog-ig-offset-x: 0px;
+$blog-ig-offset-y: -35px;
+$blog-ig-width: 35px;
+$blog-ig-height: 35px;
+$blog-ig-total-width: 105px;
+$blog-ig-total-height: 70px;
+$blog-ig-image: '~assets/images/$sprites/demo-sprites.png';
+$blog-ig: (0px, 35px, 0px, -35px, 35px, 35px, 105px, 70px, '~assets/images/$sprites/demo-sprites.png', 'blog-ig', );
+$blog-in-name: 'blog-in';
+$blog-in-x: 35px;
+$blog-in-y: 35px;
+$blog-in-offset-x: -35px;
+$blog-in-offset-y: -35px;
+$blog-in-width: 35px;
+$blog-in-height: 35px;
+$blog-in-total-width: 105px;
+$blog-in-total-height: 70px;
+$blog-in-image: '~assets/images/$sprites/demo-sprites.png';
+$blog-in: (35px, 35px, -35px, -35px, 35px, 35px, 105px, 70px, '~assets/images/$sprites/demo-sprites.png', 'blog-in', );
+$blog-rs-name: 'blog-rs';
+$blog-rs-x: 70px;
+$blog-rs-y: 0px;
+$blog-rs-offset-x: -70px;
+$blog-rs-offset-y: 0px;
+$blog-rs-width: 35px;
+$blog-rs-height: 35px;
+$blog-rs-total-width: 105px;
+$blog-rs-total-height: 70px;
+$blog-rs-image: '~assets/images/$sprites/demo-sprites.png';
+$blog-rs: (70px, 0px, -70px, 0px, 35px, 35px, 105px, 70px, '~assets/images/$sprites/demo-sprites.png', 'blog-rs', );
+$blog-tw-name: 'blog-tw';
+$blog-tw-x: 70px;
+$blog-tw-y: 35px;
+$blog-tw-offset-x: -70px;
+$blog-tw-offset-y: -35px;
+$blog-tw-width: 35px;
+$blog-tw-height: 35px;
+$blog-tw-total-width: 105px;
+$blog-tw-total-height: 70px;
+$blog-tw-image: '~assets/images/$sprites/demo-sprites.png';
+$blog-tw: (70px, 35px, -70px, -35px, 35px, 35px, 105px, 70px, '~assets/images/$sprites/demo-sprites.png', 'blog-tw', );
+$blog-fb-2x-name: 'blog-fb@2x';
+$blog-fb-2x-x: 0px;
+$blog-fb-2x-y: 0px;
+$blog-fb-2x-offset-x: 0px;
+$blog-fb-2x-offset-y: 0px;
+$blog-fb-2x-width: 70px;
+$blog-fb-2x-height: 70px;
+$blog-fb-2x-total-width: 210px;
+$blog-fb-2x-total-height: 140px;
+$blog-fb-2x-image: '~assets/images/$sprites/demo-sprites2x.png';
+$blog-fb-2x: (0px, 0px, 0px, 0px, 70px, 70px, 210px, 140px, '~assets/images/$sprites/demo-sprites2x.png', 'blog-fb@2x', );
+$blog-gp-2x-name: 'blog-gp@2x';
+$blog-gp-2x-x: 70px;
+$blog-gp-2x-y: 0px;
+$blog-gp-2x-offset-x: -70px;
+$blog-gp-2x-offset-y: 0px;
+$blog-gp-2x-width: 70px;
+$blog-gp-2x-height: 70px;
+$blog-gp-2x-total-width: 210px;
+$blog-gp-2x-total-height: 140px;
+$blog-gp-2x-image: '~assets/images/$sprites/demo-sprites2x.png';
+$blog-gp-2x: (70px, 0px, -70px, 0px, 70px, 70px, 210px, 140px, '~assets/images/$sprites/demo-sprites2x.png', 'blog-gp@2x', );
+$blog-ig-2x-name: 'blog-ig@2x';
+$blog-ig-2x-x: 0px;
+$blog-ig-2x-y: 70px;
+$blog-ig-2x-offset-x: 0px;
+$blog-ig-2x-offset-y: -70px;
+$blog-ig-2x-width: 70px;
+$blog-ig-2x-height: 70px;
+$blog-ig-2x-total-width: 210px;
+$blog-ig-2x-total-height: 140px;
+$blog-ig-2x-image: '~assets/images/$sprites/demo-sprites2x.png';
+$blog-ig-2x: (0px, 70px, 0px, -70px, 70px, 70px, 210px, 140px, '~assets/images/$sprites/demo-sprites2x.png', 'blog-ig@2x', );
+$blog-in-2x-name: 'blog-in@2x';
+$blog-in-2x-x: 70px;
+$blog-in-2x-y: 70px;
+$blog-in-2x-offset-x: -70px;
+$blog-in-2x-offset-y: -70px;
+$blog-in-2x-width: 70px;
+$blog-in-2x-height: 70px;
+$blog-in-2x-total-width: 210px;
+$blog-in-2x-total-height: 140px;
+$blog-in-2x-image: '~assets/images/$sprites/demo-sprites2x.png';
+$blog-in-2x: (70px, 70px, -70px, -70px, 70px, 70px, 210px, 140px, '~assets/images/$sprites/demo-sprites2x.png', 'blog-in@2x', );
+$blog-rs-2x-name: 'blog-rs@2x';
+$blog-rs-2x-x: 140px;
+$blog-rs-2x-y: 0px;
+$blog-rs-2x-offset-x: -140px;
+$blog-rs-2x-offset-y: 0px;
+$blog-rs-2x-width: 70px;
+$blog-rs-2x-height: 70px;
+$blog-rs-2x-total-width: 210px;
+$blog-rs-2x-total-height: 140px;
+$blog-rs-2x-image: '~assets/images/$sprites/demo-sprites2x.png';
+$blog-rs-2x: (140px, 0px, -140px, 0px, 70px, 70px, 210px, 140px, '~assets/images/$sprites/demo-sprites2x.png', 'blog-rs@2x', );
+$blog-tw-2x-name: 'blog-tw@2x';
+$blog-tw-2x-x: 140px;
+$blog-tw-2x-y: 70px;
+$blog-tw-2x-offset-x: -140px;
+$blog-tw-2x-offset-y: -70px;
+$blog-tw-2x-width: 70px;
+$blog-tw-2x-height: 70px;
+$blog-tw-2x-total-width: 210px;
+$blog-tw-2x-total-height: 140px;
+$blog-tw-2x-image: '~assets/images/$sprites/demo-sprites2x.png';
+$blog-tw-2x: (140px, 70px, -140px, -70px, 70px, 70px, 210px, 140px, '~assets/images/$sprites/demo-sprites2x.png', 'blog-tw@2x', );
+$spritesheet-width: 105px;
+$spritesheet-height: 70px;
+$spritesheet-image: '~assets/images/$sprites/demo-sprites.png';
+$spritesheet-sprites: ($blog-fb, $blog-gp, $blog-ig, $blog-in, $blog-rs, $blog-tw, );
+$spritesheet: (105px, 70px, '~assets/images/$sprites/demo-sprites.png', $spritesheet-sprites, );
+$retina-spritesheet-width: 210px;
+$retina-spritesheet-height: 140px;
+$retina-spritesheet-image: '~assets/images/$sprites/demo-sprites2x.png';
+$retina-spritesheet-sprites: ($blog-fb-2x, $blog-gp-2x, $blog-ig-2x, $blog-in-2x, $blog-rs-2x, $blog-tw-2x, );
+$retina-spritesheet: (210px, 140px, '~assets/images/$sprites/demo-sprites2x.png', $retina-spritesheet-sprites, );
+
+// These "retina group" variables are mappings for the naming and pairing of normal and retina sprites.
+//
+// The list formatted variables are intended for mixins like `retina-sprite` and `retina-sprites`.
+$blog-fb-group-name: 'blog-fb';
+$blog-fb-group: ('blog-fb', $blog-fb, $blog-fb-2x, );
+$blog-gp-group-name: 'blog-gp';
+$blog-gp-group: ('blog-gp', $blog-gp, $blog-gp-2x, );
+$blog-ig-group-name: 'blog-ig';
+$blog-ig-group: ('blog-ig', $blog-ig, $blog-ig-2x, );
+$blog-in-group-name: 'blog-in';
+$blog-in-group: ('blog-in', $blog-in, $blog-in-2x, );
+$blog-rs-group-name: 'blog-rs';
+$blog-rs-group: ('blog-rs', $blog-rs, $blog-rs-2x, );
+$blog-tw-group-name: 'blog-tw';
+$blog-tw-group: ('blog-tw', $blog-tw, $blog-tw-2x, );
+$retina-groups: ($blog-fb-group, $blog-gp-group, $blog-ig-group, $blog-in-group, $blog-rs-group, $blog-tw-group, );
+
+// The provided mixins are intended to be used with the array-like variables
+//
+// .icon-home {
+//   @include sprite-width($icon-home);
+// }
+//
+// .icon-email {
+//   @include sprite($icon-email);
+// }
+//
+// Example usage in HTML:
+//
+// `display: block` sprite:
+// <div class="icon-home"></div>
+//
+// To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+//
+// // CSS
+// .icon {
+//   display: inline-block;
+// }
+//
+// // HTML
+// <i class="icon icon-home"></i>
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 5);
+}
+
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 6);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 3);
+  $sprite-offset-y: nth($sprite, 4);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image($sprite) {
+  $sprite-image: nth($sprite, 9);
+  background-image: url(#{$sprite-image});
+}
+
+@mixin sprite($sprite) {
+  @include sprite-image($sprite);
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+// The `retina-sprite` mixin sets up rules and a media query for a sprite/retina sprite.
+//   It should be used with a "retina group" variable.
+//
+// The media query is from CSS Tricks: https://css-tricks.com/snippets/css/retina-display-media-query/
+//
+// $icon-home-group: ('icon-home', $icon-home, $icon-home-2x, );
+//
+// .icon-home {
+//   @include retina-sprite($icon-home-group);
+// }
+@mixin sprite-background-size($sprite) {
+  $sprite-total-width: nth($sprite, 7);
+  $sprite-total-height: nth($sprite, 8);
+  background-size: $sprite-total-width $sprite-total-height;
+}
+
+@mixin retina-sprite($retina-group) {
+  $normal-sprite: nth($retina-group, 2);
+  $retina-sprite: nth($retina-group, 3);
+  @include sprite($normal-sprite);
+
+  @media (-webkit-min-device-pixel-ratio: 2),
+         (min-resolution: 192dpi) {
+    @include sprite-image($retina-sprite);
+    @include sprite-background-size($normal-sprite);
+  }
+}
+
+// The `sprites` mixin generates identical output to the CSS template
+//   but can be overridden inside of SCSS
+//
+// @include sprites($spritesheet-sprites);
+@mixin sprites($sprites) {
+  @each $sprite in $sprites {
+    $sprite-name: nth($sprite, 10);
+    .#{$sprite-name} {
+      @include sprite($sprite);
+    }
+  }
+}
+
+// The `retina-sprites` mixin generates a CSS rule and media query for retina groups
+//   This yields the same output as CSS retina template but can be overridden in SCSS
+//
+// @include retina-sprites($retina-groups);
+@mixin retina-sprites($retina-groups) {
+  @each $retina-group in $retina-groups {
+    $sprite-name: nth($retina-group, 1);
+    .#{$sprite-name} {
+      @include retina-sprite($retina-group);
+    }
+  }
+}

@@ -59,3 +59,42 @@ gulp.task('makefont', function(){
 
   
 });
+
+// 生成雪碧图
+
+var spritesmith = require('gulp.spritesmith');
+var glob = require('glob');
+// gutil = require('gulp-util');
+
+gulp.task('makesprite', function () {
+  var dirs = glob.sync(path.join(_.DEV, 'assets/images/**/sprites'));
+  var imagePath = path.join(_.DEV, 'assets/images');
+
+  for(var i=0; i<dirs.length; i++) {
+    var dir = dirs[i];
+
+    var name = path.relative(imagePath, dir).replace(new RegExp(path.sep,'g'), '-');
+
+    // gutil.log('1x: ' + path.relative(__dirname,path.join(dir, '*.png')));
+    // gutil.log('2x: ' + path.relative(__dirname,path.join(dir, '*@2x.png')));
+
+    var spriteData = 
+      gulp.src(path.relative(__dirname,path.join(dir, '*.png')))
+        .pipe(spritesmith({
+          imgPath: path.join('~assets/images/$sprites',name + '.png'),
+          retinaImgPath: path.join('~assets/images/$sprites',name + '2x.png'),
+          imgName: name + '.png',
+          cssName: '_' + name + '.scss',
+          retinaSrcFilter: path.relative(__dirname,path.join(dir, '*@2x.png')),
+          retinaImgName: name + '2x.png'
+        }));
+
+    var imgStream = spriteData.img
+      .pipe(gulp.dest(path.join(_.DEV, 'assets/images/$sprites')));
+
+    var cssStream = spriteData.css
+      .pipe(gulp.dest(path.join(_.DEV, 'assets/styles/sprites')));
+
+  }
+
+});
