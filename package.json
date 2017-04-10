@@ -7,6 +7,7 @@
     "start": "cross-env NODE_ENV=development webpack-dev-server --devtool inline-source-map",
     "serve": "cross-env NODE_ENV=development webpack-dev-server --port 3000 --host 0.0.0.0",
     "build": "cross-env NODE_ENV=production webpack",
+    "makefont": "gulp makefont",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jian.Li",
@@ -17,6 +18,7 @@
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
     "front-matter": "^2.1.2",
+    "gulp": "^3.9.1",
     "handlebars": "^4.0.6",
     "hogan.js": "^3.0.2",
     "html-webpack-plugin": "^2.28.0",
@@ -33,6 +35,8 @@
   },
   "dependencies": {
     "css-loader": "^0.27.3",
+    "gulp-iconfont": "^8.0.1",
+    "gulp-iconfont-css": "^2.1.0",
     "handlebars-loader": "^1.4.0",
     "resolve-url-loader": "^2.0.2",
     "script-ext-html-webpack-plugin": "^1.7.1",

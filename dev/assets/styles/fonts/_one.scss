@@ -1,0 +1,42 @@
+@font-face {
+	font-family: "one";
+	src: url('~assets/fonts/one/one.eot');
+	src: url('~assets/fonts/one/one.eot?#iefix') format('eot'),
+		url('~assets/fonts/one/one.woff2') format('woff2'),
+		url('~assets/fonts/one/one.woff') format('woff'),
+		url('~assets/fonts/one/one.ttf') format('truetype'),
+		url('~assets/fonts/one/one.svg#one') format('svg');
+}
+
+.icon:before {
+	font-family: "one";
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	/* speak: none; only necessary if not using the private unicode range (firstGlyph option) */
+	text-decoration: none;
+	text-transform: none;
+}
+
+
+.icon-phone:before {
+	content: "\E001";
+}
+
+.icon-power-banks:before {
+	content: "\E002";
+}
+
+.icon-power-cables:before {
+	content: "\E003";
+}
+
+.icon-power:before {
+	content: "\E004";
+}
+
+.icon-store-insurance:before {
+	content: "\E005";
+}

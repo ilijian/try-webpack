@@ -46,7 +46,11 @@
 </head>
 <body>
   
-    ${{> content}}    
+  <div id="page-root">
+    <one-header/>
+    ${{> content}}
+    <one-footer/>
+  </div>
   
   ${{#scripts}}
   <!-- 有些情况下，希望追加脚本文件，而不是使用构建产生的js（我同样并不知道什么情况下会用到这个，也许是引用位于谷歌服务器上的js）-->

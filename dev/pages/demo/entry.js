@@ -7,7 +7,8 @@ new Vue({
   el: '#page-root',
   // template: '<layout-base><main-section/></layout-base>',
   components: {
-    'main-section': require('./index.vue'),
-    'layout-base': require('layouts/layout-base.vue')
+    'main-section': require('./main.vue'),
+    'one-header': require('modules/header/header.vue'),
+    'one-footer': require('modules/footer/footer.vue')
   }
 })

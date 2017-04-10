@@ -99,6 +99,8 @@ module.exports = {
       // [参考链接](https://github.com/bholloway/resolve-url-loader/issues/5)
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
+        // 指定仅处理images文件夹下的指定文件类型
+        include: path.resolve(__dirname, 'dev/assets/images'),
         use: {
           loader: 'file-loader',  //另外还有一个 url-loader 可以设定，当图片小于某个情况时，可以以base64的形式嵌入到样式文件中
           options: {
@@ -110,6 +112,9 @@ module.exports = {
       // 字体文件
       {
         test: /\.(eot|svg|ttf|otf|woff|woff2)$/i,
+        // 指定仅处理fonts文件夹下
+        include: path.resolve(__dirname, 'dev/assets/fonts'),
+        exclude: path.resolve(__dirname, 'dev/assets/fonts/svgs'),
         use: {
           loader: 'url-loader',
           options: {
