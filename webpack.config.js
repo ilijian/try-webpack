@@ -5,6 +5,7 @@ var webpack = require('webpack');
 var HbsToHtmlPlugin = require('./plugins/HbsToHtml.js');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+// var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 // var ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 var _ = {
@@ -145,6 +146,7 @@ module.exports = {
         // 对于多入口文件，必须使用 contenthash、name等变量性质的配置，并且因为name中有可能包含路径信息，所以最好不要省略name（如本配置中）
         return _.production ? getPath('[name].[contenthash:8].css').replace(/\.js./, '.') : getPath('[name].css').replace(/\.js.css$/, '.css');
       }, 
+      // Extract from all additional chunks too (by default it extracts only from the initial chunk(s))
       allChunks: true
     })
 
