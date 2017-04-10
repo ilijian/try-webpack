@@ -1,22 +1,13 @@
 require('assets/scripts/base.js');
+require('assets/styles/fonts.css');
 
 var Vue = require('vue/dist/vue.common.js');
 
-var OneButton = require('widgets/button/button.vue');
-
-// var FakeImage = require('widgets/images/fake.vue');
-
-require('pages/demo/inline.inline.js');
-require('pages/demo/inline.inline.scss');
-
-require('assets/styles/fonts.css');
-
 new Vue({
   el: '#page-root',
-  data: {
-    msg: 'Hello Webpack Multi pages'
-  },
+  // template: '<layout-base><main-section/></layout-base>',
   components: {
-    'one-button': OneButton
+    'main-section': require('./index.vue'),
+    'layout-base': require('layouts/layout-base.vue')
   }
-});
+})
