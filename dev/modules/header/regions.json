@@ -1,0 +1,288 @@
+[
+  {
+    "group": "North America", 
+    "stores": [
+      {
+        "cur": "USD", 
+        "lang": "English", 
+        "value": "us", 
+        "name": "United States", 
+        "code": "us"
+      }, 
+      {
+        "cur": "CAD", 
+        "lang": "Français", 
+        "value": "ca", 
+        "name": "Canada", 
+        "code": "ca_fr"
+      }, 
+      {
+        "cur": "CAD", 
+        "lang": "English", 
+        "value": "ca", 
+        "name": "Canada", 
+        "code": "ca_en"
+      }
+    ]
+  }, 
+  {
+    "group": "Europe", 
+    "stores": [
+      {
+        "cur": "EUR", 
+        "lang": "Deutsch", 
+        "value": "at", 
+        "name": "Österreich", 
+        "code": "at"
+      }, 
+      {
+        "cur": "EUR", 
+        "lang": "Nederlands", 
+        "value": "be", 
+        "name": "België", 
+        "code": "be_nl"
+      }, 
+      {
+        "cur": "EUR", 
+        "lang": "Français", 
+        "value": "be", 
+        "name": "Belgique", 
+        "code": "be_fr"
+      }, 
+      {
+        "cur": "EUR", 
+        "lang": "English", 
+        "value": "bg", 
+        "name": "България", 
+        "code": "bg"
+      }, 
+      {
+        "cur": "EUR", 
+        "lang": "English", 
+        "value": "hr", 
+        "name": "Hrvatska", 
+        "code": "hr"
+      }, 
+      {
+        "cur": "EUR", 
+        "lang": "ελληνικά", 
+        "value": "cy", 
+        "name": "Κύπρος ", 
+        "code": "cy_gr"
+      }, 
+      {
+        "cur": "EUR", 
+        "lang": "Türk", 
+        "value": "cy", 
+        "name": "Kıbrıs", 
+        "code": "cy_tr"
+      }, 
+      {
+        "cur": "CZK", 
+        "lang": "Čeština", 
+        "value": "cz", 
+        "name": "Česká Republika", 
+        "code": "cz"
+      }, 
+      {
+        "cur": "DKK", 
+        "lang": "Dansk", 
+        "value": "dk", 
+        "name": "Danmark", 
+        "code": "dk"
+      }, 
+      {
+        "cur": "EUR", 
+        "lang": "English", 
+        "value": "ee", 
+        "name": "Eesti", 
+        "code": "ee"
+      }, 
+      {
+        "cur": "EUR", 
+        "lang": "Suomalainen", 
+        "value": "fi", 
+        "name": "Suomi", 
+        "code": "fi"
+      }, 
+      {
+        "cur": "EUR", 
+        "lang": "Français", 
+        "value": "fr", 
+        "name": "France", 
+        "code": "fr"
+      }, 
+      {
+        "cur": "EUR", 
+        "lang": "Deutsch", 
+        "value": "de", 
+        "name": "Deutschland", 
+        "code": "de"
+      }, 
+      {
+        "cur": "EUR", 
+        "lang": "Ελληνικά", 
+        "value": "gr", 
+        "name": "Ελλάδα", 
+        "code": "gr"
+      }, 
+      {
+        "cur": "HUF", 
+        "lang": "Magyar", 
+        "value": "hu", 
+        "name": "Magyarország", 
+        "code": "hu"
+      }, 
+      {
+        "cur": "EUR", 
+        "lang": "English", 
+        "value": "ie", 
+        "name": "Ireland", 
+        "code": "ie"
+      }, 
+      {
+        "cur": "EUR", 
+        "lang": "Italiano", 
+        "value": "it", 
+        "name": "Italia", 
+        "code": "it"
+      }, 
+      {
+        "cur": "EUR", 
+        "lang": "English", 
+        "value": "lv", 
+        "name": "Latvija", 
+        "code": "lv"
+      }, 
+      {
+        "cur": "EUR", 
+        "lang": "English", 
+        "value": "lt", 
+        "name": "Lietuva", 
+        "code": "lt"
+      }, 
+      {
+        "cur": "EUR", 
+        "lang": "Français", 
+        "value": "lu", 
+        "name": "Luxembourg", 
+        "code": "lu_fr"
+      }, 
+      {
+        "cur": "EUR", 
+        "lang": "Deutsch", 
+        "value": "lu", 
+        "name": "Luxemburg", 
+        "code": "lu_de"
+      }, 
+      {
+        "cur": "EUR", 
+        "lang": "English", 
+        "value": "mt", 
+        "name": "Malta", 
+        "code": "mt"
+      }, 
+      {
+        "cur": "EUR", 
+        "lang": "Nederlands", 
+        "value": "nl", 
+        "name": "Nederland", 
+        "code": "nl"
+      }, 
+      {
+        "cur": "PLN", 
+        "lang": "Polski", 
+        "value": "pl", 
+        "name": "Polska", 
+        "code": "pl"
+      }, 
+      {
+        "cur": "EUR", 
+        "lang": "Português", 
+        "value": "pt", 
+        "name": "Portugal", 
+        "code": "pt"
+      }, 
+      {
+        "cur": "EUR", 
+        "lang": "English", 
+        "value": "ro", 
+        "name": "România", 
+        "code": "ro"
+      }, 
+      {
+        "cur": "EUR", 
+        "lang": "Español", 
+        "value": "es", 
+        "name": "España", 
+        "code": "es"
+      }, 
+      {
+        "cur": "EUR", 
+        "lang": "English", 
+        "value": "sk", 
+        "name": "Slovensko", 
+        "code": "sk"
+      }, 
+      {
+        "cur": "EUR", 
+        "lang": "English", 
+        "value": "si", 
+        "name": "Slovenija", 
+        "code": "si"
+      }, 
+      {
+        "cur": "SEK", 
+        "lang": "Svenska", 
+        "value": "se", 
+        "name": "Sverige", 
+        "code": "se"
+      }, 
+      {
+        "cur": "GBP", 
+        "lang": "English", 
+        "value": "uk", 
+        "name": "United Kingdom", 
+        "code": "uk"
+      }
+    ]
+  }, 
+  {
+    "group": "Asia-Pacific", 
+    "stores": [
+      {
+        "cur": "CNY", 
+        "lang": "简体中文", 
+        "value": "cn", 
+        "name": "中国", 
+        "code": "cn"
+      }, 
+      {
+        "cur": "HKD", 
+        "lang": "English", 
+        "value": "hk", 
+        "name": "Hong Kong", 
+        "code": "hk"
+      }, 
+      {
+        "cur": "INR", 
+        "lang": "English", 
+        "value": "in", 
+        "name": "India", 
+        "code": "in"
+      }
+    ]
+  }, 
+  {
+    "group": "Other Regions", 
+    "stores": [
+      {
+        "cur": "USD", 
+        "lang": "English", 
+        "value": "global", 
+        "name": "Other Regions", 
+        "code": "global"
+      }
+    ]
+  }
+]
