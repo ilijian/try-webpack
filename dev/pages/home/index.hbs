@@ -1,0 +1,43 @@
+---
+# 本页面将要使用的 layout ，默认为 layouts 文件夹下的 page.hbs
+layout: page.hbs
+
+# 页面的上线信息，包括线上域名、url以及适用商城
+page:
+  domain: "https://oneplus.net"
+  url: checkout/jcart
+
+# meta title 信息，同样会用于 OG 的 title
+title: Demo - How to write a hbs file
+# meta description 信息，同样会用于 OG 的 description
+description: __to__be__filled__
+# meta keywords 信息
+keywords: __to__be__filled__
+
+# 其他meta信息
+metas:
+  - name: some name
+    content: some content
+  - name: some name
+    content: some content
+
+# OG信息，将会用于分享到facebook、twitter以及其他社交媒体网站
+# image - OG 图片路径
+# width - OG 图片宽度
+# height - OG 图片高度
+# site - 社交网站官方账号（目前是twitter账号）
+# creator - 社交网站创建者账号 （目前是twitter账号）
+og:
+  image: https://opstatics.com/mage/images/open_graph/oneplus-logo.png
+  width: 1200
+  site: OnePlus
+
+# 需要在构建工具生成的样式表之外引入的css
+stylesheets: []
+
+# 需要在构建工具生成的js之外引入的js
+scripts: []
+---
+
+<main-banner/>
+<tiles/>

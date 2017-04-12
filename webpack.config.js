@@ -5,6 +5,7 @@ var webpack = require('webpack');
 var HbsToHtmlPlugin = require('./plugins/HbsToHtml.js');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+// var PrerenderSpaPlugin = require('prerender-spa-plugin');
 // var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 // var ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
@@ -17,14 +18,14 @@ var _ = {
 var entries = getEntry();
 
 module.exports = {
-  // entry:  __dirname + "/dev/entry.js",//单一入口文件，也可以以传入对象或者数组的方式配置成多入口文件
+  // entry:  __dirname + "/dev/index.js",//单一入口文件，也可以以传入对象或者数组的方式配置成多入口文件
   entry: entries,
   output: {
     //打包后的文件存放的根目录
     path: path.join(__dirname, 'build'),
     // filename: "entry.built.js"//打包后输出文件的文件名
     // filename: '[name].[chunkhash:8].js',  //注意：chunkhash通常都只在生产环境中使用，因此在webpack世界设定中，chunkhash配置项会与webpack-dev-server中 --hot 配置项冲突，不可同时使用
-    filename: _.production ? '[name].[chunkhash:8].js' : '[name]',
+    filename: _.production ? '[name].[chunkhash:8].js' : '[name].js',
     // webpack output serve 地址，当设定后，访问地址为 [例]localhost:6789/views/demo/index.html
     publicPath: _.production ? 'https://opstatics.com/store/' : '/store/'
   },
@@ -155,6 +156,14 @@ module.exports = {
       allChunks: true
     })
 
+    // 预渲染页面插件，还不知道怎么用
+    // new PrerenderSpaPlugin(
+    //   // 预渲染页面的绝对路径
+    //   path.join(__dirname, 'build/demo'),
+    //   // List of routes to prerender
+    //   [ '/' ]
+    // )
+
   ].concat(configHtmlPlugins()),
 
   // webpack默认的本地开发服务器，但是仍然需要手动下载webpack-dev-server模块
@@ -174,7 +183,7 @@ module.exports = {
 
 function configHtmlPlugins() {
 
-  var hbses = glob.sync(path.join(__dirname, 'dev/pages/**/index.hbs'));
+  var hbses = glob.sync(path.join(__dirname, 'dev/store/**/index.hbs'));
 
   var plugins = [];
 
@@ -186,7 +195,7 @@ function configHtmlPlugins() {
     //注意:同一个插件可以 new 多次, 每次可以进行不同的配置
     plugins.push(new HtmlWebpackPlugin({
       // filename: 输出html的文件名，如果包含路径信息，那么将会输出到指定路径下（相对路径，相对于output.path），没有文件夹则会创建文件夹
-      filename: path.relative(path.join(__dirname,'dev/pages'), html),
+      filename: path.relative(path.join(__dirname,'dev/store'), html),
       // 是否将入口文件打包产生的输出文件插入到html文件中
       inject: true,
       // 是否加上在引用处加上webpack此次打包产生的hash，格式为（src="built.js?[hash]"）
@@ -206,13 +215,13 @@ function configHtmlPlugins() {
 
 // 将所有入口文件自动整理成 [路径名：文件路径] 键值对
 function getEntry() {
-  var files = glob.sync(path.join(__dirname, 'dev/pages/**/entry.js'));
+  var files = glob.sync(path.join(__dirname, 'dev/store/**/index.js'));
   var entries = {},
     entry, chunkname;
 
   for (var i = 0; i < files.length; i++) {
     entry = files[i];
-    chunkname = path.relative(path.resolve(__dirname,'dev/pages'),entry)
+    chunkname = path.relative(path.resolve(__dirname,'dev/store'),entry)
     // chunkname的形式为'demo/entry'，其中包含了入口文件的路径信息和文件后缀信息，这样打包后的文件会按照指定路径直接写入到output指定文件夹下
     // 去掉了后缀
     chunkname = chunkname.replace(/\.js$/, '');

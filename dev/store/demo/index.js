@@ -1,3 +1,5 @@
+'use strict';
+
 require('assets/scripts/base.js');
 require('assets/styles/fonts.css');
 
