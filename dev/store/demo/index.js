@@ -5,6 +5,8 @@ require('assets/styles/fonts.css');
 
 var Vue = require('vue/dist/vue.common.js');
 
+console.log(__('OnePlus 3T'));
+
 new Vue({
   el: '#page-root',
   // template: '<layout-base><main-section/></layout-base>',

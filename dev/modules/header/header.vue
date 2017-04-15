@@ -1,6 +1,8 @@
 <template>
   <header>
-    <h1>This is the header</h1>
+    <h1>__("OnePlus 3T")</h1>
+    <a href="__("https://oneplus.net")">Home</a>
+    <div>__("OnePlus 3T<p>xxx</p>")</div>
     <choose-store></choose-store>
   </header>
 </template>
