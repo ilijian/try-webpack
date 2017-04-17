@@ -3,9 +3,9 @@
 require('assets/scripts/base.js');
 require('assets/styles/fonts.css');
 
-var Vue = require('vue/dist/vue.common.js');
+var Vue = require('vue');
 
-console.log(__('OnePlus 3T'));
+// console.log(__('OnePlus 3T'));
 
 new Vue({
   el: '#page-root',

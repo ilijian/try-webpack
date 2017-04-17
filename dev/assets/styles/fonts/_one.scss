@@ -8,7 +8,7 @@
 		url('~assets/fonts/one/one.svg#one') format('svg');
 }
 
-.icon:before {
+.ico:before {
 	font-family: "one";
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
@@ -21,22 +21,34 @@
 }
 
 
-.icon-phone:before {
+.ico-bag:before {
 	content: "\E001";
 }
 
-.icon-power-banks:before {
+.ico-brand:before {
 	content: "\E002";
 }
 
-.icon-power-cables:before {
+.ico-call:before {
 	content: "\E003";
 }
 
-.icon-power:before {
+.ico-phone:before {
 	content: "\E004";
 }
 
-.icon-store-insurance:before {
+.ico-power-banks:before {
 	content: "\E005";
+}
+
+.ico-power-cables:before {
+	content: "\E006";
+}
+
+.ico-power:before {
+	content: "\E007";
+}
+
+.ico-store-insurance:before {
+	content: "\E008";
 }

@@ -7,6 +7,7 @@
     "start": "cross-env NODE_ENV=development webpack-dev-server --devtool inline-source-map",
     "serve": "cross-env NODE_ENV=development webpack-dev-server --port 3000 --host 0.0.0.0",
     "build": "cross-env NODE_ENV=production webpack",
+    "build2cn": "cross-env NODE_ENV=production webpack --store=cn",
     "makefont": "gulp makefont",
     "makesprite": "gulp makesprite",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -29,6 +30,7 @@
     "postcss-cssnext": "^2.10.0",
     "sass-loader": "^4.1.1",
     "style-loader": "^0.16.1",
+    "uglifyjs-webpack-plugin": "^0.4.3",
     "url-loader": "^0.5.8",
     "vue": "^2.1.8",
     "vue-loader": "^11.3.4",

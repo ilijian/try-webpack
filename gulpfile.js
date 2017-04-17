@@ -42,12 +42,15 @@ gulp.task('makefont', function(){
         // 指定样式文件的存放地址
         targetPath: path.relative(dest,stylePath),
         // 样式文件中指向的字体文件地址
-        fontPath: path.join('~assets/fonts',dir, '/')
+        fontPath: path.join('~assets/fonts',dir, '/'),
+        cssClass: 'ico'
       }))
       .pipe(iconfont({
+        normalize:true,
+        fontHeight: 1001,
         fontName: dir, // required
         prependUnicode: true, // recommended option
-        formats: ['ttf', 'eot', 'woff'], // default, 'woff2' and 'svg' are available
+        formats: ['ttf', 'eot', 'woff', 'woff2', 'svg'], // default, 'woff2' and 'svg' are available
         // timestamp: runTimestamp, // recommended to get consistent builds when watching files
       }))
         .on('glyphs', function(glyphs, options) {
