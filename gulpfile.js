@@ -78,9 +78,6 @@ gulp.task('makesprite', function () {
 
     var name = path.relative(imagePath, dir).replace(new RegExp(path.sep,'g'), '-');
 
-    // gutil.log('1x: ' + path.relative(__dirname,path.join(dir, '*.png')));
-    // gutil.log('2x: ' + path.relative(__dirname,path.join(dir, '*@2x.png')));
-
     var spriteData = 
       gulp.src(path.relative(__dirname,path.join(dir, '*.png')))
         .pipe(spritesmith({
