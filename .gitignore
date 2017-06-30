@@ -5,3 +5,12 @@ tmp
 .tmp
 node_modules
 npm-debug.log
+cache
+.cache
+dist
+.tmp
+bower_components
+.DS_Store
+.sass-cache
+.idea
+charles
